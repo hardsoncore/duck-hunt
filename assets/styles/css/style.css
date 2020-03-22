@@ -1,0 +1,26 @@
+body {
+  position: relative;
+  margin: 0;
+  background-image: url("../../images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh; }
+
+.score {
+  background-color: #000;
+  border-radius: 3px;
+  color: #fff;
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  font-size: 1.4em; }
+
+.duck + label {
+  background-image: url(../images/duck_black.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  z-index: 1;
+  width: 36px;
+  height: 34px; }
