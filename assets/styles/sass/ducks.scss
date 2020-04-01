@@ -1,0 +1,17 @@
+@keyframes duckWing {
+	0% { background-position:0px -220px; }
+	33% { background-position:-85px -220px; }
+	66% { background-position:-170px -220px; }
+	100% { background-position:-170px -220px; }
+}
+
+.duck {
+  background: url('../../images/sprite.png') no-repeat;
+	height:76px;
+	display:block;
+	width:70px;
+	position:relative;
+	background-position:0px -220px;
+
+	animation: duckWing 200ms infinite step-end alternate;
+}

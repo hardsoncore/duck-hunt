@@ -14,8 +14,8 @@
 }
 
 @keyframes dogMove {
-  from { left: 0; }
-	to { left: 40vw; }
+  0% { left: 0; }
+	100% { left: 40vw; }
 }
 
 @keyframes dogWalk {
