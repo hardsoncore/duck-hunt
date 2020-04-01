@@ -27,13 +27,12 @@ function watchFunc() {
 
   // watch будет срабатывать сам при каждом изменении во входных файлах scss
   watch(['./assets/styles/sass/**/*.scss']).on('change', function() {
-    console.log(`File 111 was added`);
     let rebuild = series(sassToCssFunc, concatCssFunc);
     rebuild();
   });
 
-  // watch будет срабатывать сам при каждом изменении в index.html или bundle.css
-  watch(['*.html', './assets/styles/css/bundle.css']).on('change', livereload.changed);
+  // watch будет срабатывать сам при каждом изменении в index.html или bundle.css или файле js
+  watch(['*.html', './assets/styles/css/bundle.css', './assets/js/*.js']).on('change', livereload.changed);
 }
 
 // series запускает все задачи по порядку. пока предыдущая не закончится, новая не стартует
