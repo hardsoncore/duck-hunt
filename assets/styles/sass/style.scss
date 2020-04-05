@@ -24,17 +24,49 @@ body {
   right: 0;
 }
 
-.score {
+.score-panel {
   background-color: #000;
   border-radius: 3px;
   color: #fff;
   display: none;
   position: absolute;
-  bottom: 1em;
+  bottom: -10px;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 10px;
   font-size: 1.4em;
+
+  &__bullets {
+    display: flex;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    & li {
+      background-image: url('../../images/sprite.png');
+      background-position: 0 241px;
+      height: 20px;
+      width: 20px;
+      list-style: none;
+    }
+  }
+
+  &__ducks {
+    display: flex;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    & li {
+      background-image: url('../../images/sprite.png');
+      background-position: -26px 241px;
+      height: 20px;
+      width: 20px;
+      list-style: none;
+    }
+  }
+
+  &__counter { }
 }
 
 .duck {
