@@ -1,6 +1,5 @@
 .dog-intro {
   position: absolute;
-	z-index: 1;
   background-image: url('../../images/sprite.png');
   background-repeat: no-repeat;
 	width: 120px;
@@ -23,6 +22,7 @@
 	animation-duration: 5s, .5s;
 	animation-timing-function: linear, steps(1, end);
 	animation-fill-mode: forwards, forwards;
+	z-index: -1;
 }
 
 .dog-catch-duck {
@@ -36,6 +36,7 @@
 	animation-duration: 5s;
 	animation-timing-function: linear;
 	animation-fill-mode: forwards;
+	z-index: -1;
 }
 
 @keyframes dogMoveHorizontal {

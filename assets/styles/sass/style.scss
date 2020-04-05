@@ -2,12 +2,18 @@ body {
   position: relative;
   margin: 0;
   background-color: #3bbcfc;
+  font-family: '8BITWONDERNominal';
+  height: 100vh;
+  overflow: hidden;
+}
+
+.stage-background {
   background-image: url('../../images/background-1.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: left 0 bottom -30px;
-  font-family: '8BITWONDERNominal';
   min-height: 100vh;
+  z-index: 100;
 }
 
 .text-table {
