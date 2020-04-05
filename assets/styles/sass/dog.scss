@@ -1,21 +1,25 @@
 .dog-intro {
   position: absolute;
-	bottom: 120px;
 	z-index: 1;
   background-image: url('../../images/sprite.png');
   background-repeat: no-repeat;
 	width: 120px;
   height: 100px;
   // описываем каждое свойство для пары анимаций отдельно
-  animation-name: dogMove, dogWalk;
-  animation-duration: 3s, 4s;
-  animation-timing-function: linear, step-start;
-  animation-fill-mode: forwards, forwards;
+  animation-name: dogMoveHorizontal, dogMoveVertical, dogWalk;
+  animation-duration: 3s, 3.6s, 4s;
+  animation-timing-function: linear, steps(1, end), step-start;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
-@keyframes dogMove {
+@keyframes dogMoveHorizontal {
   0% { left: 0; }
 	100% { left: 40vw; }
+}
+
+@keyframes dogMoveVertical {
+	from { bottom: 120px; }
+  to { bottom: 160px; }
 }
 
 @keyframes dogWalk {
@@ -42,15 +46,15 @@
 	60% { background-position: 0px 0px; }
 	63% { background-position: -120px 0px; }
 	66% { background-position: -240px 0px; }
-	69% { background-position: -360px 0px;  } /* Walk */
+	69% { background-position: -360px 0px; } /* Walk */
 
 	72% { background-position: -480px 0px; }  /* Snif */
-	75% { background-position: -360px 0px;  }
-	78% { background-position: -480px 0px;  }
-	81% { background-position: -360px 0px;  }
+	75% { background-position: -360px 0px; }
+	78% { background-position: -480px 0px; }
+	81% { background-position: -360px 0px; }
 
 	90% { background-position: -0px -110px; } /* Find */
-	93% {background-position: -120px -110px;} /* Jump */
-	96% {background-position: -240px -110px;}
+	93% { background-position: -120px -110px; } /* Jump */
+	96% { background-position: -240px -110px; }
   100% { background-position: 1000px 1000px; } /* Hide */
 }
