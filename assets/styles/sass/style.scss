@@ -1,10 +1,21 @@
 body {
   position: relative;
   margin: 0;
-  background-image: url('../../images/background.png');
+  background-color: #3bbcfc;
+  background-image: url('../../images/background-1.png');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: left 0 bottom -30px;
+  font-family: '8BITWONDERNominal';
   min-height: 100vh;
+}
+
+.text-table {
+  position: absolute;
+  text-align: center;
+  top: 30%;
+  left: 0;
+  right: 0;
 }
 
 .score {
