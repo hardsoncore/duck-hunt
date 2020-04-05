@@ -12,9 +12,35 @@
   animation-fill-mode: forwards, forwards, forwards;
 }
 
+.dog-laughs {
+	position: absolute;
+	left: 700px;
+	height: 100px;
+	width: 120px;
+	background-image: url('../../images/sprite.png');
+	animation-name: dogShowHide, dogLaughs;
+	animation-iteration-count: 1, 10;
+	animation-duration: 5s, .5s;
+	animation-timing-function: linear, steps(1, end);
+	animation-fill-mode: forwards, forwards;
+}
+
+.dog-catch-duck {
+	position: absolute;
+	left: 750px;
+	height: 100px;
+	width: 120px;
+	background-image: url('../../images/sprite.png');
+	background-position: 120px 0;
+	animation-name: dogShowHide;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}
+
 @keyframes dogMoveHorizontal {
   0% { left: 0; }
-	100% { left: 40vw; }
+	100% { left: 700px; }
 }
 
 @keyframes dogMoveVertical {
@@ -57,4 +83,19 @@
 	93% { background-position: -120px -110px; } /* Jump */
 	96% { background-position: -240px -110px; }
   100% { background-position: 1000px 1000px; } /* Hide */
+}
+
+@keyframes dogShowHide {
+	0%   { bottom: 180px; }
+	10%  { bottom: 190px; }
+	20%  { bottom: 220px; }
+	50%  { bottom: 220px; }
+	80%  { bottom: 220px; }
+	100% { bottom: 180px; }
+}
+
+@keyframes dogLaughs {
+	0%   { background-position: -360px -110px; padding-bottom: 0px; }
+	50%  { background-position: -480px -110px; padding-bottom: 5px; }
+	100% { background-position: -360px -110px; padding-bottom: 0px; }
 }
