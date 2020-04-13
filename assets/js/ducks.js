@@ -1,5 +1,5 @@
-function startDucksFlight(delayBeforeFirstDuckAppesars) {
+function startDucksFlight(delayBeforeFirstDuckAppears) {
   setTimeout(function() {
 
-  }, delayBeforeFirstDuckAppesars);
+  }, delayBeforeFirstDuckAppears);
 }

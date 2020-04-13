@@ -3,22 +3,23 @@
 
   const startingAnimationDelay = 5000; // delay for the starting animation
   const textTable = document.getElementsByClassName('text-table')[0]; // main header of the page, signalazing about smth
-  const scorePanel = document.getElementsByClassName('score-panel')[0]; // main header of the page, signalazing about smth
+  const scorePanel = document.getElementsByClassName('score-panel')[0];
 
   // launch the life cycle of our application
   lifecycle();
 
   function lifecycle() {
-    dogIntro(); // use method from file dog.js
-    initializeControls();
+    dogIntro(); // uses method from file dog.js
+    dogIntroRemove(startingAnimationDelay);
+    initializeControls(startingAnimationDelay);
   }
 
-  function initializeControls() {
+  function initializeControls(delay) {
     setTimeout(function () {
       showTextOnScreen('Ready', 2000);
       showScorePanel();
-      startDucksFlight(3000);
-    }, startingAnimationDelay);
+      startDucksFlight(3000); // uses method from file ducks.js
+    }, delay);
   }
 
   function showTextOnScreen(text, animationDuration) {
