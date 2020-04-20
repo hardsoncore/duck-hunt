@@ -9,8 +9,8 @@
   lifecycle();
 
   function lifecycle() {
-    dogIntro(); // uses method from file dog.js
-    dogIntroRemove(startingAnimationDelay);
+    dogModule.dogIntro(); // uses method from file dog.js
+    dogModule.dogIntroRemove(startingAnimationDelay);
     initializeControls(startingAnimationDelay);
   }
 
@@ -18,7 +18,7 @@
     setTimeout(function () {
       showTextOnScreen('Ready', 2000);
       showScorePanel();
-      startDucksFlight(3000); // uses method from file ducks.js
+      ducksModule.startDucksFlight(3000); // uses method from file ducks.js
     }, delay);
   }
 
