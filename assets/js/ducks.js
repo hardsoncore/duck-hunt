@@ -15,23 +15,30 @@ let ducksModule = {};
   // timing settings
   const delayBetweenDuckFlights = 4000;
   const duckFallingDelay = 1000;
+  const dogReactionDuration = 5000;
 
   ducksModule.startDucksFlight = function (delayBeforeFirstDuckAppears) {
     setTimeout(function() {
+      // first duck starts to fly
       duckFlight(0);
-      duckFlight(delayBetweenDuckFlights);
-      duckFlight(delayBetweenDuckFlights * 2);
-      duckFlight(delayBetweenDuckFlights * 3);
-      duckFlight(delayBetweenDuckFlights * 4);
-      afterAllDucks(delayBetweenDuckFlights * 5);
+      // second duck starts to fly
+      duckFlight(delayBetweenDuckFlights + dogReactionDuration);
+      // third duck starts to fly
+      duckFlight((delayBetweenDuckFlights + dogReactionDuration) * 2);
+      // fourth duck starts to fly
+      duckFlight((delayBetweenDuckFlights + dogReactionDuration) * 3);
+      // fifth duck starts to fly
+      duckFlight((delayBetweenDuckFlights + dogReactionDuration) * 4);
+      // show final score
+      afterAllDucks((delayBetweenDuckFlights + dogReactionDuration) * 5);
     }, delayBeforeFirstDuckAppears);
-  }
+  };
 
   function getRandomHorizontalStartPoint() {
     return Math.round(Math.random() * blockWidth);
   }
 
-  function duckFlight(delay) {
+  function duckFlight(delayBeforeDuckAppears) {
     setTimeout(function() {
       const startPoint = getRandomHorizontalStartPoint();
       const endPoint   = getRandomHorizontalStartPoint();
@@ -43,14 +50,32 @@ let ducksModule = {};
 
       addDuckAnimation(flyingDuck, {x : startPoint, y: blockHeight}, {x : endPoint, y: -100}, delayBetweenDuckFlights);
 
-      flyingDuck.addEventListener('click', function(ev) {
-        this.style.display = 'none';
-        this.removeEventListener('click', arguments.callee, false);
+      flyingDuck.addEventListener('click', onDuckKilling, true);
 
+      function onDuckKilling(ev) {
+        // hide flying duck
+        flyingDuck.style.display = 'none';
+        // show falling duck and add it animation
         fallingDuck.style.display = 'block';
         addDuckAnimation(fallingDuck, {x: ev.screenX, y: ev.screenY - 100}, {x: ev.screenX, y: blockHeight}, duckFallingDelay);
-      });
-    }, delay);
+        // make dog say wow
+        dogModule.dogWow(ev.screenX, dogReactionDuration);
+        // remove listener
+        flyingDuck.removeEventListener('click', onDuckKilling, true);
+      }
+
+      function whenDuckFlyiesAway() {
+        // make dog laugh
+        dogModule.dogLaughs(dogReactionDuration);
+        // remove listener
+        flyingDuck.removeEventListener('click', onDuckKilling, true);
+      }
+
+      setTimeout(function() {
+        whenDuckFlyiesAway();
+      }, delayBetweenDuckFlights);
+
+    }, delayBeforeDuckAppears);
   }
 
   function addDuckAnimation(duck, start, end, duration) {

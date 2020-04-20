@@ -1,7 +1,9 @@
 (function() {
   'use strict';
 
-  const startingAnimationDelay = 5000; // delay for the starting animation
+  const introAnimationDelay = 5000; // delay for the intro animation
+  const showingTextDuration = 2000;
+  const pauseBeforeFirstDuckAppears = 3000;
   const textTable = document.getElementsByClassName('text-table')[0]; // main header of the page, signalazing about smth
   const scorePanel = document.getElementsByClassName('score-panel')[0];
 
@@ -10,15 +12,15 @@
 
   function lifecycle() {
     dogModule.dogIntro(); // uses method from file dog.js
-    dogModule.dogIntroRemove(startingAnimationDelay);
-    initializeControls(startingAnimationDelay);
+    dogModule.dogIntroRemove(introAnimationDelay);
+    initializeControls(introAnimationDelay);
   }
 
   function initializeControls(delay) {
     setTimeout(function () {
-      showTextOnScreen('Ready', 2000);
+      showTextOnScreen('Ready', showingTextDuration);
       showScorePanel();
-      ducksModule.startDucksFlight(3000); // uses method from file ducks.js
+      ducksModule.startDucksFlight(pauseBeforeFirstDuckAppears); // uses method from file ducks.js
     }, delay);
   }
 
