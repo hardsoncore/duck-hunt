@@ -67,6 +67,14 @@ body {
       width: 20px;
       list-style: none;
     }
+
+    & li.shot-failed {
+      filter: contrast(3.5);
+    }
+
+    & li.shot-successful {
+      filter: hue-rotate(144deg) brightness(2.5)
+    }
   }
 
   &__counter { }

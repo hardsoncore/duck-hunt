@@ -17,6 +17,25 @@ let ducksModule = {};
   const duckFallingDelay = 1000;
   const dogReactionDuration = 5000;
 
+  ducksModule.onClickDecreaseBulletsAmount = function() {
+    if (gameGod.bulletCounter > 2) return;
+
+    setTimeout(function() {
+      const bulletsPanel = document.querySelector("#score-panel__bullets");
+      bulletsPanel.children[gameGod.bulletCounter].style.display = 'none';
+
+      gameGod.bulletCounter++;
+    }, 1);
+  };
+
+  function initBulletsAmount() {
+    gameGod.bulletCounter = 0;
+    const bulletsPanel = document.querySelector("#score-panel__bullets");
+    for (let i = 0; i < gameGod.bulletAmount; i++) {
+      bulletsPanel.children[i].style.display = 'block';
+    }
+  }
+
   ducksModule.startDucksFlight = function (delayBeforeFirstDuckAppears) {
     setTimeout(function() {
       for (let i = 0; i < gameGod.duckAmount; i++) {
@@ -33,6 +52,8 @@ let ducksModule = {};
 
   function duckFlight(delayBeforeDuckAppears) {
     setTimeout(function() {
+      initBulletsAmount();
+
       const startPoint = getRandomHorizontalStartPoint();
       const endPoint   = getRandomHorizontalStartPoint();
 
@@ -52,20 +73,47 @@ let ducksModule = {};
         fallingDuck.style.display = 'block';
         addDuckAnimation(fallingDuck, {x: ev.screenX, y: ev.screenY - 100}, {x: ev.screenX, y: blockHeight}, duckFallingDelay);
         // make dog say wow
-        dogModule.dogWow(ev.screenX, dogReactionDuration);
+        dogModule.dogWow(ev.screenX, dogReactionDuration, duckFallingDelay);
         // remove listener
         flyingDuck.removeEventListener('click', onDuckKilling, true);
+        // change score
+        changeScoreOnDuckKill();
+      }
+
+      function changeScoreOnDuckKill() {
+        // change duck icon color
+        const ducksPanel = document.querySelector("#score-panel__ducks");
+        ducksPanel.children[gameGod.duckCounter].classList.add('shot-successful');
+
+        // change highscore
+        gameGod.score = gameGod.score.substr(0, gameGod.duckAmount - gameGod.duckCounter - 1) + '1' + gameGod.score.substr(gameGod.duckAmount - gameGod.duckCounter - 1 + 1);
+        document.querySelector("#score").innerHTML = gameGod.score;
+      }
+
+      function changeScoreOnDuckFlyiesAway() {
+        // change duck icon color
+        if (!duckKilled) ducksPanel.children[gameGod.duckCounter].classList.add('shot-failed');
       }
 
       function whenDuckFlyiesAway() {
+        // check is duck flew away
+        const ducksPanel = document.querySelector("#score-panel__ducks");
+        let duckKilled = ducksPanel.children[gameGod.duckCounter].classList.contains('shot-successful');
+
+        // if user hit duck -> do nothing
+        if (duckKilled) return;
+
         // make dog laugh
         dogModule.dogLaughs(dogReactionDuration);
-        // remove listener
-        flyingDuck.removeEventListener('click', onDuckKilling, true);
+        changeScoreOnDuckFlyiesAway();
       }
 
+      // calls when ducks flying animation time ends
       setTimeout(function() {
         whenDuckFlyiesAway();
+        // remove listener
+        flyingDuck.removeEventListener('click', onDuckKilling, true);
+        gameGod.duckCounter++;
       }, delayBetweenDuckFlights);
 
     }, delayBeforeDuckAppears);
@@ -90,7 +138,7 @@ let ducksModule = {};
 
   function afterAllDucks(delay) {
     setTimeout(function() {
-      // showTextOnScreen('You win!', 10000000);
+      mainModule.showTextOnScreen('Game over', 10000000);
     }, delay);
   }
 

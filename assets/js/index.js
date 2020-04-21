@@ -5,6 +5,9 @@ const gameGod = {
   bulletAmount: 3,
   score: '00000',
 };
+
+let mainModule = {};
+
 (function() {
   'use strict';
 
@@ -13,6 +16,9 @@ const gameGod = {
   const pauseBeforeFirstDuckAppears = 3000;
   const textTable = document.getElementsByClassName('text-table')[0]; // main header of the page, signalazing about smth
   const scorePanel = document.getElementsByClassName('score-panel')[0];
+
+  // add shooting listener
+  document.body.addEventListener('click', ducksModule.onClickDecreaseBulletsAmount, true);
 
   // launch the life cycle of our application
   lifecycle();
@@ -31,6 +37,7 @@ const gameGod = {
     }, delay);
   }
 
+  mainModule.showTextOnScreen = showTextOnScreen;
   function showTextOnScreen(text, animationDuration) {
     textTable.innerHTML = text;
     textTable.style.display='block';
@@ -44,7 +51,8 @@ const gameGod = {
   }
 
   function showScorePanel() {
-    scorePanel.style.display='block';
+    document.querySelector("#score").innerHTML = gameGod.score;
+    scorePanel.style.display = 'block';
   }
 
 })();
