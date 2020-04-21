@@ -18,11 +18,9 @@ let mainModule = {};
   const scorePanel = document.getElementsByClassName('score-panel')[0];
 
   // add shooting listener
-  document.body.addEventListener('click', ducksModule.onClickDecreaseBulletsAmount, true);
+  document.body.addEventListener('click', ducksModule.onClickDecreaseBulletsAmount);
 
   // launch the life cycle of our application
-  lifecycle();
-
   function lifecycle() {
     dogModule.dogIntro(); // uses method from file dog.js
     dogModule.dogIntroRemove(introAnimationDelay);
@@ -53,6 +51,24 @@ let mainModule = {};
   function showScorePanel() {
     document.querySelector("#score").innerHTML = gameGod.score;
     scorePanel.style.display = 'block';
+  }
+
+  mainModule.hideScorePanel = function() {
+    document.querySelector("#score").innerHTML = gameGod.score;
+    scorePanel.style.display = 'none';
+  };
+
+  mainModule.startGame = startGame;
+  function startGame(ev) {
+    ev.stopPropagation();
+
+    lifecycle();
+    document.querySelector("#start").style.display = 'none';
+  }
+
+  function playAgain() {
+    // Reload current page without using cache
+    document.location.reload(true);
   }
 
 })();

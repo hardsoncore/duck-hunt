@@ -76,17 +76,22 @@ body {
       filter: hue-rotate(144deg) brightness(2.5)
     }
   }
-
-  &__counter { }
 }
 
-.duck {
-  & + label {
-    background-image: url(../images/duck_black.png);
-    background-repeat: no-repeat;
-    background-position: left center;
-    z-index: 1;
-		width: 36px;
-		height: 34px;
-  }
+.btn {
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  background: black;
+  font-size: 2em;
+  color: #fff;
+  font-family: inherit;
+  padding: 10px 15px;
+  border-radius: 3px;
+  border: 0;
+  transform: translate(-50%, -50%);
+}
+
+#play-again {
+  display: none;
 }

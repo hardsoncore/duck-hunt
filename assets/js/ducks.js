@@ -143,6 +143,10 @@ let ducksModule = {};
     setTimeout(function() {
       soundsModule.endThemeSound();
       mainModule.showTextOnScreen('Game over', 10000000);
+      gameGod.bulletCounter = 3;
+      document.querySelector("#play-again").style.display = 'block';
+
+      mainModule.hideScorePanel();
     }, delay);
   }
 
