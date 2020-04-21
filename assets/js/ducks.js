@@ -90,9 +90,9 @@ let ducksModule = {};
         document.querySelector("#score").innerHTML = gameGod.score;
       }
 
-      function changeScoreOnDuckFlyiesAway() {
+      function changeScoreOnDuckFlyiesAway(ducksPanel) {
         // change duck icon color
-        if (!duckKilled) ducksPanel.children[gameGod.duckCounter].classList.add('shot-failed');
+        ducksPanel.children[gameGod.duckCounter].classList.add('shot-failed');
       }
 
       function whenDuckFlyiesAway() {
@@ -105,7 +105,7 @@ let ducksModule = {};
 
         // make dog laugh
         dogModule.dogLaughs(dogReactionDuration);
-        changeScoreOnDuckFlyiesAway();
+        changeScoreOnDuckFlyiesAway(ducksPanel);
       }
 
       // calls when ducks flying animation time ends
