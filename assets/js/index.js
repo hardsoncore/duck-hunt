@@ -1,3 +1,10 @@
+const gameGod = {
+  duckCounter: 0,
+  duckAmount: 5,
+  bulletCounter: 0,
+  bulletAmount: 3,
+  score: '00000',
+};
 (function() {
   'use strict';
 

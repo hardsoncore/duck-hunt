@@ -19,18 +19,11 @@ let ducksModule = {};
 
   ducksModule.startDucksFlight = function (delayBeforeFirstDuckAppears) {
     setTimeout(function() {
-      // first duck starts to fly
-      duckFlight(0);
-      // second duck starts to fly
-      duckFlight(delayBetweenDuckFlights + dogReactionDuration);
-      // third duck starts to fly
-      duckFlight((delayBetweenDuckFlights + dogReactionDuration) * 2);
-      // fourth duck starts to fly
-      duckFlight((delayBetweenDuckFlights + dogReactionDuration) * 3);
-      // fifth duck starts to fly
-      duckFlight((delayBetweenDuckFlights + dogReactionDuration) * 4);
-      // show final score
-      afterAllDucks((delayBetweenDuckFlights + dogReactionDuration) * 5);
+      for (let i = 0; i < gameGod.duckAmount; i++) {
+        duckFlight((delayBetweenDuckFlights + dogReactionDuration) * i);
+      }
+
+      afterAllDucks((delayBetweenDuckFlights + dogReactionDuration) * gameGod.duckAmount);
     }, delayBeforeFirstDuckAppears);
   };
 
