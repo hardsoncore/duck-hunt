@@ -1,0 +1,79 @@
+body {
+  position: relative;
+  margin: 0;
+  background-color: #3bbcfc;
+  font-family: '8BITWONDERNominal';
+  height: 100vh;
+  overflow: hidden; }
+
+#stage-background {
+  background-image: url("../../images/background-1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left 0 bottom -30px;
+  min-height: 100vh;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0; }
+
+.text-table {
+  position: absolute;
+  text-align: center;
+  top: 30%;
+  left: 0;
+  right: 0; }
+
+.score-panel {
+  background-color: #000;
+  border-radius: 3px;
+  color: #fff;
+  display: none;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  font-size: 1.4em; }
+  .score-panel__bullets {
+    display: flex;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px; }
+    .score-panel__bullets li {
+      background-image: url("../../images/sprite.png");
+      background-position: 0 241px;
+      height: 20px;
+      width: 20px;
+      list-style: none; }
+  .score-panel__ducks {
+    display: flex;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px; }
+    .score-panel__ducks li {
+      background-image: url("../../images/sprite.png");
+      background-position: -26px 241px;
+      height: 20px;
+      width: 20px;
+      list-style: none; }
+    .score-panel__ducks li.shot-failed {
+      filter: contrast(3.5); }
+    .score-panel__ducks li.shot-successful {
+      filter: hue-rotate(144deg) brightness(2.5); }
+
+.btn {
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  background: black;
+  font-size: 2em;
+  color: #fff;
+  font-family: inherit;
+  padding: 10px 15px;
+  border-radius: 3px;
+  border: 0;
+  transform: translate(-50%, -50%); }
+
+#play-again {
+  display: none; }

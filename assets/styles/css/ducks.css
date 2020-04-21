@@ -1,0 +1,40 @@
+.duck-flying {
+  background: url("../../images/sprite.png") no-repeat;
+  height: 76px;
+  width: 70px;
+  position: absolute;
+  bottom: 0;
+  animation: duckFly 200ms infinite step-end alternate; }
+
+.duck-falling {
+  background: url("../../images/sprite.png") no-repeat;
+  height: 76px;
+  width: 70px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  animation: duckFall 200ms infinite step-end alternate; }
+
+@keyframes duckFly {
+  0% {
+    background-position: -265px -220px; }
+  33% {
+    background-position: -350px -220px; }
+  66% {
+    background-position: -435px -220px; }
+  100% {
+    background-position: -435px -220px; } }
+
+@keyframes duckFall {
+  0% {
+    background-position: -340px -470px;
+    transform: scaleX(1); }
+  33% {
+    background-position: -350px -470px;
+    transform: scaleX(-1); }
+  66% {
+    background-position: -340px -470px;
+    transform: scaleX(1); }
+  100% {
+    background-position: -350px -470px;
+    transform: scaleX(-1); } }

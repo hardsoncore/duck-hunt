@@ -1,0 +1,397 @@
+.flex-jcsb {
+  display: flex;
+  justify-content: space-between;
+}
+.dog-intro {
+  position: absolute;
+  background-image: url("../../images/sprite.png");
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 100px;
+  animation-name: dogMoveHorizontal, dogMoveVertical, dogWalk;
+  animation-duration: 3s, 3.6s, 4s;
+  animation-timing-function: linear, steps(1, end), step-start;
+  animation-fill-mode: forwards, forwards, forwards;
+}
+
+.dog-laughs {
+  position: absolute;
+  left: 700px;
+  height: 100px;
+  width: 120px;
+  background-image: url("../../images/sprite.png");
+  animation-name: dogShowHide, dogLaughs;
+  animation-iteration-count: 1, 10;
+  animation-duration: 5s, .5s;
+  animation-timing-function: linear, steps(1, end);
+  animation-fill-mode: forwards, forwards;
+  z-index: -1;
+}
+
+.dog-catch-duck {
+  position: absolute;
+  left: 750px;
+  height: 100px;
+  width: 120px;
+  background-image: url("../../images/sprite.png");
+  background-position: 120px 0;
+  animation-name: dogShowHide;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  z-index: -1;
+}
+
+@keyframes dogMoveHorizontal {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 700px;
+  }
+}
+
+@keyframes dogMoveVertical {
+  from {
+    bottom: 120px;
+  }
+
+  to {
+    bottom: 160px;
+  }
+}
+
+@keyframes dogWalk {
+  0% {
+    background-position: 0px 0px;
+  }
+
+  /* walk start */
+  3% {
+    background-position: -120px 0px;
+  }
+
+  6% {
+    background-position: -240px 0px;
+  }
+
+  9% {
+    background-position: -360px 0px;
+  }
+
+  12% {
+    background-position: 0px 0px;
+  }
+
+  15% {
+    background-position: -120px 0px;
+  }
+
+  18% {
+    background-position: -240px 0px;
+  }
+
+  21% {
+    background-position: -360px 0px;
+  }
+
+  24% {
+    background-position: 0px 0px;
+  }
+
+  27% {
+    background-position: -120px 0px;
+  }
+
+  30% {
+    background-position: -240px 0px;
+  }
+
+  33% {
+    background-position: -360px 0px;
+  }
+
+  36% {
+    background-position: 0px 0px;
+  }
+
+  39% {
+    background-position: -120px 0px;
+  }
+
+  42% {
+    background-position: -240px 0px;
+  }
+
+  45% {
+    background-position: -360px 0px;
+  }
+
+  48% {
+    background-position: 0px 0px;
+  }
+
+  51% {
+    background-position: -120px 0px;
+  }
+
+  54% {
+    background-position: -240px 0px;
+  }
+
+  57% {
+    background-position: -360px 0px;
+  }
+
+  60% {
+    background-position: 0px 0px;
+  }
+
+  63% {
+    background-position: -120px 0px;
+  }
+
+  66% {
+    background-position: -240px 0px;
+  }
+
+  69% {
+    background-position: -360px 0px;
+  }
+
+  /* Walk */
+  72% {
+    background-position: -480px 0px;
+  }
+
+  /* Snif */
+  75% {
+    background-position: -360px 0px;
+  }
+
+  78% {
+    background-position: -480px 0px;
+  }
+
+  81% {
+    background-position: -360px 0px;
+  }
+
+  90% {
+    background-position: -0px -110px;
+  }
+
+  /* Find */
+  93% {
+    background-position: -120px -110px;
+  }
+
+  /* Jump */
+  96% {
+    background-position: -240px -110px;
+  }
+
+  100% {
+    background-position: 1000px 1000px;
+  }
+
+  /* Hide */}
+
+@keyframes dogShowHide {
+  0% {
+    bottom: 180px;
+  }
+
+  10% {
+    bottom: 190px;
+  }
+
+  20% {
+    bottom: 220px;
+  }
+
+  50% {
+    bottom: 220px;
+  }
+
+  80% {
+    bottom: 220px;
+  }
+
+  100% {
+    bottom: 180px;
+  }
+}
+
+@keyframes dogLaughs {
+  0% {
+    background-position: -360px -110px;
+    padding-bottom: 0px;
+  }
+
+  50% {
+    background-position: -480px -110px;
+    padding-bottom: 5px;
+  }
+
+  100% {
+    background-position: -360px -110px;
+    padding-bottom: 0px;
+  }
+}
+.duck-flying {
+  background: url("../../images/sprite.png") no-repeat;
+  height: 76px;
+  width: 70px;
+  position: absolute;
+  bottom: 0;
+  animation: duckFly 200ms infinite step-end alternate;
+}
+
+.duck-falling {
+  background: url("../../images/sprite.png") no-repeat;
+  height: 76px;
+  width: 70px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  animation: duckFall 200ms infinite step-end alternate;
+}
+
+@keyframes duckFly {
+  0% {
+    background-position: -265px -220px;
+  }
+
+  33% {
+    background-position: -350px -220px;
+  }
+
+  66% {
+    background-position: -435px -220px;
+  }
+
+  100% {
+    background-position: -435px -220px;
+  }
+}
+
+@keyframes duckFall {
+  0% {
+    background-position: -340px -470px;
+    transform: scaleX(1);
+  }
+
+  33% {
+    background-position: -350px -470px;
+    transform: scaleX(-1);
+  }
+
+  66% {
+    background-position: -340px -470px;
+    transform: scaleX(1);
+  }
+
+  100% {
+    background-position: -350px -470px;
+    transform: scaleX(-1);
+  }
+}
+body {
+  position: relative;
+  margin: 0;
+  background-color: #3bbcfc;
+  font-family: '8BITWONDERNominal';
+  height: 100vh;
+  overflow: hidden;
+}
+
+#stage-background {
+  background-image: url("../../images/background-1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left 0 bottom -30px;
+  min-height: 100vh;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.text-table {
+  position: absolute;
+  text-align: center;
+  top: 30%;
+  left: 0;
+  right: 0;
+}
+
+.score-panel {
+  background-color: #000;
+  border-radius: 3px;
+  color: #fff;
+  display: none;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  font-size: 1.4em;
+}
+
+.score-panel__bullets {
+  display: flex;
+  padding: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.score-panel__bullets li {
+  background-image: url("../../images/sprite.png");
+  background-position: 0 241px;
+  height: 20px;
+  width: 20px;
+  list-style: none;
+}
+
+.score-panel__ducks {
+  display: flex;
+  padding: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.score-panel__ducks li {
+  background-image: url("../../images/sprite.png");
+  background-position: -26px 241px;
+  height: 20px;
+  width: 20px;
+  list-style: none;
+}
+
+.score-panel__ducks li.shot-failed {
+  filter: contrast(3.5);
+}
+
+.score-panel__ducks li.shot-successful {
+  filter: hue-rotate(144deg) brightness(2.5);
+}
+
+.btn {
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  background: black;
+  font-size: 2em;
+  color: #fff;
+  font-family: inherit;
+  padding: 10px 15px;
+  border-radius: 3px;
+  border: 0;
+  transform: translate(-50%, -50%);
+}
+
+#play-again {
+  display: none;
+}
