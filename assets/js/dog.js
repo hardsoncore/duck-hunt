@@ -7,6 +7,8 @@ let dogModule = {};
     const div = document.createElement('div');
     div.classList.add('dog-intro');
     document.body.appendChild(div);
+
+    soundsModule.introSound();
   };
 
   // remove block with dog intro when animation ends
@@ -24,6 +26,8 @@ let dogModule = {};
       dog.style.left = position + 'px';
       dog.classList.add('dog-catch-duck');
 
+      soundsModule.dogWowSound();
+
       setTimeout(function() {
         dog.classList.remove('dog-catch-duck');
         dog.style.display = 'none';
@@ -35,6 +39,8 @@ let dogModule = {};
     const dog = document.querySelector("#dog");
     dog.classList.add('dog-laughs');
     dog.style.display = 'block';
+
+    soundsModule.dogLaughSound();
 
     setTimeout(function() {
       dog.classList.remove('dog-laughs');
