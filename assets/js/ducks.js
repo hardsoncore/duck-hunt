@@ -20,6 +20,8 @@ let ducksModule = {};
   ducksModule.onClickDecreaseBulletsAmount = function() {
     if (gameGod.bulletCounter > 2) return;
 
+    soundsModule.shootSound();
+
     setTimeout(function() {
       const bulletsPanel = document.querySelector("#score-panel__bullets");
       bulletsPanel.children[gameGod.bulletCounter].style.display = 'none';
@@ -53,6 +55,7 @@ let ducksModule = {};
   function duckFlight(delayBeforeDuckAppears) {
     setTimeout(function() {
       initBulletsAmount();
+      soundsModule.duckFlightSound();
 
       const startPoint = getRandomHorizontalStartPoint();
       const endPoint   = getRandomHorizontalStartPoint();
@@ -138,6 +141,7 @@ let ducksModule = {};
 
   function afterAllDucks(delay) {
     setTimeout(function() {
+      soundsModule.endThemeSound();
       mainModule.showTextOnScreen('Game over', 10000000);
     }, delay);
   }
