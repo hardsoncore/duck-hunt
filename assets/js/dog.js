@@ -17,22 +17,28 @@ let dogModule = {};
     }, delay + 100);
   };
 
-  dogModule.dogWow = function(position, duration) {
-    const dog = document.querySelector("#dog");
-    dog.style.left = position + 'px';
-    dog.classList.add('dog-catch-duck');
-
+  dogModule.dogWow = function(position, duration, delay) {
     setTimeout(function() {
-      dog.classList.remove('dog-catch-duck');
-    }, duration);
+      const dog = document.querySelector("#dog");
+      dog.style.display = 'block';
+      dog.style.left = position + 'px';
+      dog.classList.add('dog-catch-duck');
+
+      setTimeout(function() {
+        dog.classList.remove('dog-catch-duck');
+        dog.style.display = 'none';
+      }, duration);
+    }, delay);
   };
 
   dogModule.dogLaughs = function(duration) {
     const dog = document.querySelector("#dog");
     dog.classList.add('dog-laughs');
+    dog.style.display = 'block';
 
     setTimeout(function() {
       dog.classList.remove('dog-laughs');
+      dog.style.display = 'none';
     }, duration);
   };
 
