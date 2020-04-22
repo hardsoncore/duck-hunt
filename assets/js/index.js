@@ -65,7 +65,7 @@ let mainModule = {};
     lifecycle();
     document.querySelector("#start").style.display = 'none';
   }
-
+  mainModule.playAgain = playAgain;
   function playAgain() {
     // Reload current page without using cache
     document.location.reload(true);
