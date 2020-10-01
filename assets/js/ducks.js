@@ -74,9 +74,10 @@ let ducksModule = {};
         flyingDuck.style.display = 'none';
         // show falling duck and add it animation
         fallingDuck.style.display = 'block';
-        addDuckAnimation(fallingDuck, {x: ev.screenX, y: ev.screenY - 100}, {x: ev.screenX, y: blockHeight}, duckFallingDelay);
+
+        addDuckAnimation(fallingDuck, { x: ev.clientX, y: ev.clientY }, { x: ev.clientX, y: blockHeight}, duckFallingDelay);
         // make dog say wow
-        dogModule.dogWow(ev.screenX, dogReactionDuration, duckFallingDelay);
+        dogModule.dogWow(ev.clientX, dogReactionDuration, duckFallingDelay);
         // remove listener
         flyingDuck.removeEventListener('click', onDuckKilling, true);
         // change score

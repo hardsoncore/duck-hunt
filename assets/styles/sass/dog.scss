@@ -45,8 +45,8 @@
 }
 
 @keyframes dogMoveVertical {
-	from { bottom: 7vh; }
-  to { bottom: 17vh; }
+	from { bottom: 25px; }
+  to { bottom: 100px; }
 }
 
 @keyframes dogWalk {
@@ -87,12 +87,12 @@
 }
 
 @keyframes dogShowHide {
-	0%   { bottom: 5vh; }
-	10%  { bottom: 10vh; }
-	20%  { bottom: 18vh; }
-	50%  { bottom: 18vh; }
-	80%  { bottom: 18vh; }
-	100% { bottom: 5vh; }
+	0%   { bottom: 10px; }
+	10%  { bottom: 40px; }
+	20%  { bottom: 130px; }
+	50%  { bottom: 130px; }
+	80%  { bottom: 130px; }
+	100% { bottom: 10px; }
 }
 
 @keyframes dogLaughs {

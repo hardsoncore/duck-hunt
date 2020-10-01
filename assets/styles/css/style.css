@@ -7,9 +7,9 @@ body {
   overflow: hidden; }
 
 #stage-background {
-  background-image: url("../../images/background-2.png");
+  background-image: url("../../images/background-1.png");
   background-repeat: repeat-x;
-  background-position: left 0 bottom -2.5vh;
+  background-position: left 0 bottom;
   min-height: 100vh;
   pointer-events: none;
   position: absolute;
@@ -29,7 +29,7 @@ body {
   color: #fff;
   display: none;
   position: absolute;
-  bottom: -10px;
+  bottom: -25px;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: .5em;
@@ -63,7 +63,7 @@ body {
 
 .btn {
   position: absolute;
-  bottom: 1em;
+  bottom: 0;
   left: 50%;
   background: black;
   font-size: 2vw;
@@ -76,3 +76,17 @@ body {
 
 #play-again {
   display: none; }
+
+.display-rotation-warning {
+  display: none;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  font-size: 3.5vw;
+  padding: 1em;
+  background-color: gray; }
+
+@media screen and (orientation: portrait) {
+  .display-rotation-warning {
+    display: block; } }

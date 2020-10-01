@@ -71,4 +71,8 @@ let mainModule = {};
     document.location.reload(true);
   }
 
+  window.addEventListener('orientationchange', function () {
+    playAgain();
+  });
+
 })();
