@@ -5,8 +5,8 @@ let ducksModule = {};
 
   // stage parameters
   const stage = document.querySelector("#stage-background");
-  const blockWidth = stage.clientWidth;
-  const blockHeight = stage.clientHeight;
+  const blockWidth = window.innerWidth;
+  const blockHeight = window.innerHeight;
 
   // ducks
   const flyingDuck = document.querySelector("#duck-flying");
@@ -18,7 +18,7 @@ let ducksModule = {};
   const dogReactionDuration = 2000;
 
   ducksModule.onClickDecreaseBulletsAmount = function() {
-    if (gameGod.bulletCounter > 2) return;
+    if (!_areThereSomeBullets()) return;
 
     soundsModule.shootSound();
 
@@ -48,6 +48,10 @@ let ducksModule = {};
     }, delayBeforeFirstDuckAppears);
   };
 
+  function _areThereSomeBullets() {
+    return gameGod.bulletCounter < 3;
+  }
+
   function getRandomHorizontalStartPoint() {
     return Math.round(Math.random() * blockWidth);
   }
@@ -70,6 +74,8 @@ let ducksModule = {};
       flyingDuck.addEventListener('click', onDuckKilling, true);
 
       function onDuckKilling(ev) {
+        if (!_areThereSomeBullets()) return;
+
         // hide flying duck
         flyingDuck.style.display = 'none';
         // show falling duck and add it animation
