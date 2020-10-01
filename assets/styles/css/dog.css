@@ -17,7 +17,7 @@
   background-image: url("../../images/sprite.png");
   animation-name: dogShowHide, dogLaughs;
   animation-iteration-count: 1, 10;
-  animation-duration: 5s, .5s;
+  animation-duration: 2s, .5s;
   animation-timing-function: linear, steps(1, end);
   animation-fill-mode: forwards, forwards;
   z-index: -1; }
@@ -30,7 +30,7 @@
   background-image: url("../../images/sprite.png");
   background-position: 120px 0;
   animation-name: dogShowHide;
-  animation-duration: 5s;
+  animation-duration: 2s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
   z-index: -1; }
@@ -39,76 +39,76 @@
   0% {
     left: 0; }
   100% {
-    left: 700px; } }
+    left: 50vw; } }
 
 @keyframes dogMoveVertical {
   from {
-    bottom: 120px; }
+    bottom: 7vh; }
   to {
-    bottom: 160px; } }
+    bottom: 17vh; } }
 
 @keyframes dogWalk {
   0% {
-    background-position: 0px 0px; }
+    background-position: 0 0; }
   /* walk start */
   3% {
-    background-position: -120px 0px; }
+    background-position: -120px 0; }
   6% {
-    background-position: -240px 0px; }
+    background-position: -240px 0; }
   9% {
-    background-position: -360px 0px; }
+    background-position: -360px 0; }
   12% {
-    background-position: 0px 0px; }
+    background-position: 0 0; }
   15% {
-    background-position: -120px 0px; }
+    background-position: -120px 0; }
   18% {
-    background-position: -240px 0px; }
+    background-position: -240px 0; }
   21% {
-    background-position: -360px 0px; }
+    background-position: -360px 0; }
   24% {
-    background-position: 0px 0px; }
+    background-position: 0 0; }
   27% {
-    background-position: -120px 0px; }
+    background-position: -120px 0; }
   30% {
-    background-position: -240px 0px; }
+    background-position: -240px 0; }
   33% {
-    background-position: -360px 0px; }
+    background-position: -360px 0; }
   36% {
-    background-position: 0px 0px; }
+    background-position: 0 0; }
   39% {
-    background-position: -120px 0px; }
+    background-position: -120px 0; }
   42% {
-    background-position: -240px 0px; }
+    background-position: -240px 0; }
   45% {
-    background-position: -360px 0px; }
+    background-position: -360px 0; }
   48% {
-    background-position: 0px 0px; }
+    background-position: 0 0; }
   51% {
-    background-position: -120px 0px; }
+    background-position: -120px 0; }
   54% {
-    background-position: -240px 0px; }
+    background-position: -240px 0; }
   57% {
-    background-position: -360px 0px; }
+    background-position: -360px 0; }
   60% {
-    background-position: 0px 0px; }
+    background-position: 0 0; }
   63% {
-    background-position: -120px 0px; }
+    background-position: -120px 0; }
   66% {
-    background-position: -240px 0px; }
+    background-position: -240px 0; }
   69% {
-    background-position: -360px 0px; }
+    background-position: -360px 0; }
   /* Walk */
   72% {
-    background-position: -480px 0px; }
+    background-position: -480px 0; }
   /* Snif */
   75% {
-    background-position: -360px 0px; }
+    background-position: -360px 0; }
   78% {
-    background-position: -480px 0px; }
+    background-position: -480px 0; }
   81% {
-    background-position: -360px 0px; }
+    background-position: -360px 0; }
   90% {
-    background-position: -0px -110px; }
+    background-position: -0 -110px; }
   /* Find */
   93% {
     background-position: -120px -110px; }
@@ -121,25 +121,25 @@
 
 @keyframes dogShowHide {
   0% {
-    bottom: 180px; }
+    bottom: 5vh; }
   10% {
-    bottom: 190px; }
+    bottom: 10vh; }
   20% {
-    bottom: 220px; }
+    bottom: 18vh; }
   50% {
-    bottom: 220px; }
+    bottom: 18vh; }
   80% {
-    bottom: 220px; }
+    bottom: 18vh; }
   100% {
-    bottom: 180px; } }
+    bottom: 5vh; } }
 
 @keyframes dogLaughs {
   0% {
-    background-position: -360px -110px;
-    padding-bottom: 0px; }
+    background-position: -340px -100px;
+    padding-bottom: 0; }
   50% {
-    background-position: -480px -110px;
+    background-position: -460px -100px;
     padding-bottom: 5px; }
   100% {
-    background-position: -360px -110px;
-    padding-bottom: 0px; } }
+    background-position: -340px -100px;
+    padding-bottom: 0; } }

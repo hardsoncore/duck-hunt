@@ -8,10 +8,9 @@ body {
 }
 
 #stage-background {
-  background-image: url('../../images/background-1.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: left 0 bottom -30px;
+  background-image: url('../../images/background-2.png');
+  background-repeat: repeat-x;
+  background-position: left 0 bottom -2.5vh;
   min-height: 100vh;
   pointer-events: none;
   position: absolute;
@@ -36,20 +35,20 @@ body {
   bottom: -10px;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 10px;
-  font-size: 1.4em;
+  padding: .5em;
+  font-size: 1.4vw;
 
   &__bullets {
     display: flex;
     padding: 0;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: .2em;
+    margin-bottom: .2em;
 
     & li {
       background-image: url('../../images/sprite.png');
       background-position: 0 241px;
-      height: 20px;
-      width: 20px;
+      height: 1em;
+      width: 1em;
       list-style: none;
     }
   }
@@ -57,14 +56,14 @@ body {
   &__ducks {
     display: flex;
     padding: 0;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: .2em;
+    margin-bottom: .2em;
 
     & li {
       background-image: url('../../images/sprite.png');
       background-position: -26px 241px;
-      height: 20px;
-      width: 20px;
+      height: 1em;
+      width: 1em;
       list-style: none;
     }
 
@@ -83,10 +82,10 @@ body {
   bottom: 1em;
   left: 50%;
   background: black;
-  font-size: 2em;
+  font-size: 2vw;
   color: #fff;
   font-family: inherit;
-  padding: 10px 15px;
+  padding: .35em .7em;
   border-radius: 3px;
   border: 0;
   transform: translate(-50%, -50%);

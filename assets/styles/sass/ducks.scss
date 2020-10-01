@@ -1,7 +1,6 @@
 .duck-flying {
   background: url('../../images/sprite.png') no-repeat;
 	height: 76px;
-	// display: none;
 	width: 70px;
 	position: absolute;
 	bottom: 0;
@@ -11,7 +10,6 @@
 .duck-falling {
 	background: url('../../images/sprite.png') no-repeat;
 	height: 76px;
-	// display: none;
 	width: 70px;
 	position: absolute;
 	bottom: 0;
@@ -21,9 +19,9 @@
 
 @keyframes duckFly {
 	0%   { background-position: -265px -220px; }
-	33%  { background-position: -350px -220px; }
+	33%  { background-position: -340px -220px; }
 	66%  { background-position: -435px -220px; }
-	100% { background-position: -435px -220px; }
+	100% { background-position: -425px -220px; }
 }
 
 @keyframes duckFall {

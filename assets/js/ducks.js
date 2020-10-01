@@ -15,7 +15,7 @@ let ducksModule = {};
   // timing settings
   const delayBetweenDuckFlights = 4000;
   const duckFallingDelay = 1000;
-  const dogReactionDuration = 5000;
+  const dogReactionDuration = 2000;
 
   ducksModule.onClickDecreaseBulletsAmount = function() {
     if (gameGod.bulletCounter > 2) return;
