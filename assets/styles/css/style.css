@@ -1,10 +1,15 @@
+@font-face {
+  font-family: '8bit-font';
+  src: url("../../fonts/8bitwonder.ttf"); }
+
 body {
   position: relative;
   margin: 0;
   background-color: #3bbcfc;
-  font-family: '8BITWONDERNominal';
+  font-family: '8bit-font';
   height: 100vh;
-  overflow: hidden; }
+  overflow: hidden;
+  display: none; }
 
 #stage-background {
   background-image: url("../../images/background-1.png");

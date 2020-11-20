@@ -1,10 +1,13 @@
+@import "assets/styles/sass/fonts.scss";
+
 body {
   position: relative;
   margin: 0;
   background-color: #3bbcfc;
-  font-family: '8BITWONDERNominal';
+  font-family: '8bit-font';
   height: 100vh;
   overflow: hidden;
+  display: none;
 }
 
 #stage-background {

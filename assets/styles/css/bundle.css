@@ -298,13 +298,23 @@
     transform: scaleX(-1);
   }
 }
+@font-face {
+  font-family: '8bit-font';
+  src: url("../../fonts/8bitwonder.ttf");
+}
+@font-face {
+  font-family: '8bit-font';
+  src: url("../../fonts/8bitwonder.ttf");
+}
+
 body {
   position: relative;
   margin: 0;
   background-color: #3bbcfc;
-  font-family: '8BITWONDERNominal';
+  font-family: '8bit-font';
   height: 100vh;
   overflow: hidden;
+  display: none;
 }
 
 #stage-background {
