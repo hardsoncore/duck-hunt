@@ -3,21 +3,24 @@ let dogModule = {};
 (function() {
   'use strict';
 
-  dogModule.dogIntro = function() {
+  dogModule.dogIntro = async function (delay) {
+    return _startDogIntro()
+      .then(() => mainModule.timeDelay(delay))
+      .then(() => _finishDogIntro());
+  };
+
+  async function _startDogIntro() {
     const div = document.createElement('div');
     div.classList.add('dog-intro');
     document.body.appendChild(div);
 
     soundsModule.introSound();
-  };
+  }
 
-  // remove block with dog intro when animation ends
-  dogModule.dogIntroRemove = function(delay) {
-    setTimeout(function() {
-      const dogIntroEl = document.getElementsByClassName('dog-intro')[0];
-      dogIntroEl.remove();
-    }, delay + 100);
-  };
+  async function _finishDogIntro() {
+    const dogIntroEl = document.getElementsByClassName('dog-intro')[0];
+    dogIntroEl.remove();
+  }
 
   dogModule.dogWow = function(position, duration, delay) {
     setTimeout(function() {

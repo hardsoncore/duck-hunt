@@ -6,14 +6,13 @@ const gameGod = {
   score: '00000',
 };
 
-let mainModule = {};
+const mainModule = {};
 
 (function() {
   'use strict';
 
   const introAnimationDelay = 5000; // delay for the intro animation
-  const showingTextDuration = 2000;
-  const pauseBeforeFirstDuckAppears = 3000;
+  const showingTextDuration = 1000;
   const textTable = document.getElementsByClassName('text-table')[0]; // main header of the page, signalazing about smth
   const scorePanel = document.getElementsByClassName('score-panel')[0];
 
@@ -22,30 +21,24 @@ let mainModule = {};
 
   // launch the life cycle of our application
   function lifecycle() {
-    dogModule.dogIntro(); // uses method from file dog.js
-    dogModule.dogIntroRemove(introAnimationDelay);
-    initializeControls(introAnimationDelay);
-  }
-
-  function initializeControls(delay) {
-    setTimeout(function () {
-      showTextOnScreen('Ready', showingTextDuration);
-      showScorePanel();
-      ducksModule.startDucksFlight(pauseBeforeFirstDuckAppears); // uses method from file ducks.js
-    }, delay);
+    dogModule.dogIntro(introAnimationDelay)
+      .then(showScorePanel)
+      .then(() => showTextOnScreen('Ready'))
+      .then(() => timeDelay(showingTextDuration))
+      .then(hideTextOnScreen)
+      .then(() => ducksModule.ducksFlightCycle()); // uses method from file ducks.js
   }
 
   mainModule.showTextOnScreen = showTextOnScreen;
-  function showTextOnScreen(text, animationDuration) {
+  function showTextOnScreen(text) {
     textTable.innerHTML = text;
     textTable.style.display='block';
+  }
 
-    if (animationDuration) {
-      setTimeout(function() {
-        textTable.innerHTML = '';
-        textTable.style.display='none';
-      }, animationDuration);
-    }
+  mainModule.hideTextOnScreen = hideTextOnScreen;
+  function hideTextOnScreen() {
+    textTable.innerHTML = '';
+    textTable.style.display = 'none';
   }
 
   function showScorePanel() {
@@ -65,10 +58,20 @@ let mainModule = {};
     lifecycle();
     document.querySelector("#start").style.display = 'none';
   }
+
   mainModule.playAgain = playAgain;
   function playAgain() {
     // Reload current page without using cache
     document.location.reload(true);
+  }
+
+  mainModule.timeDelay = timeDelay;
+  function timeDelay(delay) {
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        return resolve();
+      }, delay);
+    });
   }
 
   window.addEventListener('orientationchange', function () {
@@ -76,3 +79,7 @@ let mainModule = {};
   });
 
 })();
+
+window.onload = function() {
+  document.body.style.display = 'block';
+};
