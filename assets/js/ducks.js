@@ -13,7 +13,7 @@ const ducksModule = {};
   const fallingDuck = document.querySelector("#duck-falling");
 
   // timing settings
-  const delayBetweenDuckFlights = 4000;
+  let duckFlightDuration = 4000;
   const duckFallingDelay = 1000;
   const dogReactionDuration = 2000;
 
@@ -29,12 +29,15 @@ const ducksModule = {};
     gameGod.duckCounter = 0;
     const ducksPanel = document.querySelector("#score-panel__ducks");
     for (let i = 0; i < gameGod.duckAmount; i++) {
+      debugger
       ducksPanel.children[i].classList.remove('shot-successful');
       ducksPanel.children[i].classList.remove('shot-failed');
     }
   }
 
   ducksModule.ducksFlightCycle = async function () {
+    duckFlightDuration = duckFlightDuration - gameGod.roundNumber*100;
+
     for (let i = 0; i < gameGod.duckAmount; i++) {
         await duckFlightStart();
         await afterDuckFlight(i);
@@ -49,7 +52,7 @@ const ducksModule = {};
 
     _drawFlyingDuck();
 
-    return mainModule.timeDelay(delayBetweenDuckFlights);
+    return mainModule.timeDelay(duckFlightDuration);
   }
 
   function afterDuckFlight(i) {
@@ -59,7 +62,6 @@ const ducksModule = {};
 
     // remove listener
     flyingDuck.removeEventListener('click', _onDuckKilling, true);
-    gameGod.duckCounter++;
 
     return mainModule.timeDelay(dogReactionDuration);
   }
@@ -96,7 +98,7 @@ const ducksModule = {};
     flyingDuck.style.transform = 'scaleX(1)';
     if (endPoint < startPoint) flyingDuck.style.transform = 'scaleX(-1)'; // change duck rotation
 
-    _addDuckAnimation(flyingDuck, { x: startPoint, y: blockHeight }, { x: endPoint, y: -100 }, delayBetweenDuckFlights);
+    _addDuckAnimation(flyingDuck, { x: startPoint, y: blockHeight }, { x: endPoint, y: -100 }, duckFlightDuration);
 
     flyingDuck.addEventListener('click', _onDuckKilling, true);
   }
@@ -121,17 +123,18 @@ const ducksModule = {};
   function _whenDuckFlyiesAway() {
     const ducksPanel = document.querySelector("#score-panel__ducks");
 
-    gameGod.errors++;
-
     // make dog laugh
     dogModule.dogLaughs(dogReactionDuration);
     _changeScoreOnDuckFlyiesAway(ducksPanel);
+
+    gameGod.errors++;
   }
 
   function _changeScoreOnDuckKill() {
     // change duck icon color
     const ducksPanel = document.querySelector("#score-panel__ducks");
     ducksPanel.children[gameGod.duckCounter].classList.add('shot-successful');
+    gameGod.duckCounter++;
 
     // change highscore
     const score = +gameGod.score + gameGod.roundNumber * 1;
@@ -143,6 +146,7 @@ const ducksModule = {};
   function _changeScoreOnDuckFlyiesAway(ducksPanel) {
     // change duck icon color
     ducksPanel.children[gameGod.duckCounter].classList.add('shot-failed');
+    gameGod.duckCounter++;
   }
 
   function _isDuckKilled() {
