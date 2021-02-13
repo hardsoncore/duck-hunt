@@ -25,13 +25,22 @@ const ducksModule = {};
     }
   }
 
+  function _clearDucksPanel() {
+    gameGod.duckCounter = 0;
+    const ducksPanel = document.querySelector("#score-panel__ducks");
+    for (let i = 0; i < gameGod.duckAmount; i++) {
+      ducksPanel.children[i].classList.remove('shot-successful');
+      ducksPanel.children[i].classList.remove('shot-failed');
+    }
+  }
+
   ducksModule.ducksFlightCycle = async function () {
     for (let i = 0; i < gameGod.duckAmount; i++) {
         await duckFlightStart();
         await afterDuckFlight(i);
     }
 
-    _whenGameEnds();
+    _whenRoundEnds();
   };
 
   function duckFlightStart() {
@@ -110,6 +119,8 @@ const ducksModule = {};
   function _whenDuckFlyiesAway() {
     const ducksPanel = document.querySelector("#score-panel__ducks");
 
+    gameGod.errors++;
+
     // make dog laugh
     dogModule.dogLaughs(dogReactionDuration);
     _changeScoreOnDuckFlyiesAway(ducksPanel);
@@ -121,7 +132,9 @@ const ducksModule = {};
     ducksPanel.children[gameGod.duckCounter].classList.add('shot-successful');
 
     // change highscore
-    gameGod.score = gameGod.score.substr(0, gameGod.duckAmount - gameGod.duckCounter - 1) + '1' + gameGod.score.substr(gameGod.duckAmount - gameGod.duckCounter - 1 + 1);
+    const score = +gameGod.score + gameGod.roundNumber * 1;
+    gameGod.score = gameGod.score.substr(0, gameGod.score.length - (score + '').length) + score;
+
     document.querySelector("#score").innerHTML = gameGod.score;
   }
 
@@ -134,13 +147,22 @@ const ducksModule = {};
     return flyingDuck.style.display === 'none';
   }
 
-  function _whenGameEnds() {
-    soundsModule.endThemeSound();
-    mainModule.showTextOnScreen('Game over', 10000000);
-    gameGod.bulletCounter = 3;
-    document.querySelector("#play-again").style.display = 'block';
+  function _whenRoundEnds() {
+    if (gameGod.errors >= 3) {
+      soundsModule.endThemeSound();
+      mainModule.showTextOnScreen('Game over', 10000000);
+      gameGod.bulletCounter = 3;
+      document.querySelector("#play-again").style.display = 'block';
 
-    mainModule.hideScorePanel();
+      mainModule.hideScorePanel();
+    }
+
+    if (gameGod.errors < 3) {
+      gameGod.roundNumber++;
+      _clearDucksPanel();
+
+      mainModule.nextRound();
+    }
   }
 
 })();

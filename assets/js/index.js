@@ -4,6 +4,8 @@ const gameGod = {
   bulletCounter: 0,
   bulletAmount: 3,
   score: '00000',
+  roundNumber: 1,
+  errors: 0,
 };
 
 const mainModule = {};
@@ -23,10 +25,16 @@ const mainModule = {};
   function lifecycle() {
     dogModule.dogIntro(introAnimationDelay)
       .then(showScorePanel)
-      .then(() => showTextOnScreen('Ready'))
-      .then(() => timeDelay(showingTextDuration))
-      .then(hideTextOnScreen)
-      .then(() => ducksModule.ducksFlightCycle()); // uses method from file ducks.js
+      .then(nextRound);
+  }
+
+  mainModule.nextRound = nextRound;
+  // launch the life cycle of our application
+  async function nextRound() {
+      showTextOnScreen('Round ' + gameGod.roundNumber);
+      await timeDelay(showingTextDuration);
+      hideTextOnScreen();
+      await ducksModule.ducksFlightCycle(); // uses method from file ducks.js
   }
 
   mainModule.showTextOnScreen = showTextOnScreen;
