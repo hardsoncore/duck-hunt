@@ -1,6 +1,6 @@
-let ducksModule = {};
+const ducksModule = {};
 
-(function() {
+(function () {
   'use strict';
 
   // stage parameters
@@ -17,20 +17,7 @@ let ducksModule = {};
   const duckFallingDelay = 1000;
   const dogReactionDuration = 2000;
 
-  ducksModule.onClickDecreaseBulletsAmount = function() {
-    if (!_areThereSomeBullets()) return;
-
-    soundsModule.shootSound();
-
-    setTimeout(function() {
-      const bulletsPanel = document.querySelector("#score-panel__bullets");
-      bulletsPanel.children[gameGod.bulletCounter].style.display = 'none';
-
-      gameGod.bulletCounter++;
-    }, 1);
-  };
-
-  function initBulletsAmount() {
+  function _initBulletsAmount() {
     gameGod.bulletCounter = 0;
     const bulletsPanel = document.querySelector("#score-panel__bullets");
     for (let i = 0; i < gameGod.bulletAmount; i++) {
@@ -38,34 +25,34 @@ let ducksModule = {};
     }
   }
 
-  ducksModule.ducksFlightCycle = function () {
+  ducksModule.ducksFlightCycle = async function () {
     for (let i = 0; i < gameGod.duckAmount; i++) {
-      duckFlight((delayBetweenDuckFlights + dogReactionDuration) * i);
+        await duckFlightStart();
+        await afterDuckFlight(i);
     }
 
-    _whenGameEnds((delayBetweenDuckFlights + dogReactionDuration) * gameGod.duckAmount);
+    _whenGameEnds();
   };
 
-  function _areThereSomeBullets() {
-    return gameGod.bulletCounter < 3;
+  function duckFlightStart() {
+    _initBulletsAmount();
+    soundsModule.duckFlightSound();
+
+    _drawFlyingDuck();
+
+    return mainModule.timeDelay(delayBetweenDuckFlights);
   }
 
-  function duckFlight(delayBeforeDuckAppears) {
-    setTimeout(function() {
-      initBulletsAmount();
-      soundsModule.duckFlightSound();
+  function afterDuckFlight(i) {
+    console.log('afterDuckFlight' + i);
 
-      _drawFlyingDuck();
+    if (!_isDuckKilled()) _whenDuckFlyiesAway();
 
-      // calls when ducks flying animation time ends
-      setTimeout(function() {
-        if (!_isDuckKilled()) _whenDuckFlyiesAway();
-        // remove listener
-        flyingDuck.removeEventListener('click', _onDuckKilling, true);
-        gameGod.duckCounter++;
-      }, delayBetweenDuckFlights);
+    // remove listener
+    flyingDuck.removeEventListener('click', _onDuckKilling, true);
+    gameGod.duckCounter++;
 
-    }, delayBeforeDuckAppears);
+    return mainModule.timeDelay(dogReactionDuration);
   }
 
   function _getRandomHorizontalStartPoint() {
@@ -104,7 +91,7 @@ let ducksModule = {};
   }
 
   function _onDuckKilling(ev) {
-    if (!_areThereSomeBullets()) return;
+    if (!mainModule.areThereSomeBullets()) return;
 
     // hide flying duck
     flyingDuck.style.display = 'none';
@@ -118,6 +105,14 @@ let ducksModule = {};
     flyingDuck.removeEventListener('click', _onDuckKilling, true);
     // change score
     _changeScoreOnDuckKill();
+  }
+
+  function _whenDuckFlyiesAway() {
+    const ducksPanel = document.querySelector("#score-panel__ducks");
+
+    // make dog laugh
+    dogModule.dogLaughs(dogReactionDuration);
+    _changeScoreOnDuckFlyiesAway(ducksPanel);
   }
 
   function _changeScoreOnDuckKill() {
@@ -136,30 +131,16 @@ let ducksModule = {};
   }
 
   function _isDuckKilled() {
-    // check is duck flew away
-    const ducksPanel = document.querySelector("#score-panel__ducks");
-    let duckKilled = ducksPanel.children[gameGod.duckCounter].classList.contains('shot-successful');
-
-    return duckKilled;
+    return flyingDuck.style.display === 'none';
   }
 
-  function _whenDuckFlyiesAway() {
-    const ducksPanel = document.querySelector("#score-panel__ducks");
+  function _whenGameEnds() {
+    soundsModule.endThemeSound();
+    mainModule.showTextOnScreen('Game over', 10000000);
+    gameGod.bulletCounter = 3;
+    document.querySelector("#play-again").style.display = 'block';
 
-    // make dog laugh
-    dogModule.dogLaughs(dogReactionDuration);
-    _changeScoreOnDuckFlyiesAway(ducksPanel);
-  }
-
-  function _whenGameEnds(delay) {
-    setTimeout(function() {
-      soundsModule.endThemeSound();
-      mainModule.showTextOnScreen('Game over', 10000000);
-      gameGod.bulletCounter = 3;
-      document.querySelector("#play-again").style.display = 'block';
-
-      mainModule.hideScorePanel();
-    }, delay);
+    mainModule.hideScorePanel();
   }
 
 })();

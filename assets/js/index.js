@@ -17,7 +17,7 @@ const mainModule = {};
   const scorePanel = document.getElementsByClassName('score-panel')[0];
 
   // add shooting listener
-  document.body.addEventListener('click', ducksModule.onClickDecreaseBulletsAmount);
+  document.body.addEventListener('click', _onShoot);
 
   // launch the life cycle of our application
   function lifecycle() {
@@ -72,6 +72,23 @@ const mainModule = {};
         return resolve();
       }, delay);
     });
+  }
+
+  mainModule.areThereSomeBullets = areThereSomeBullets;
+  function areThereSomeBullets() {
+    return gameGod.bulletCounter < gameGod.bulletAmount;
+  }
+
+  function _onShoot() {
+    // if there are no bullets
+    if (!areThereSomeBullets()) return;
+
+    soundsModule.shootSound();
+
+    const bulletsPanel = document.querySelector("#score-panel__bullets");
+    bulletsPanel.children[gameGod.bulletCounter].style.display = 'none';
+
+    gameGod.bulletCounter++;
   }
 
   window.addEventListener('orientationchange', function () {
