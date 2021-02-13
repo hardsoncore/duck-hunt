@@ -39,10 +39,11 @@ let soundsModule = {};
     }, 0);
   };
 
-  const audio = document.createElement('audio');
-  audio.style.display = "none";
 
   function playSound(url) {
+    const audio = document.createElement('audio');
+    audio.style.display = "none";
+
     audio.src = url;
     audio.autoplay = true;
     audio.onended = function() {
