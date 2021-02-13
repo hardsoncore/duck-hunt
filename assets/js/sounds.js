@@ -3,6 +3,8 @@ let soundsModule = {};
 (function() {
   'use strict';
 
+  let duckFly;
+
   soundsModule.introSound = function() {
     setTimeout(function() {
       playSound('./assets/sounds/bark1.m4a');
@@ -11,8 +13,12 @@ let soundsModule = {};
 
   soundsModule.duckFlightSound = function() {
     setTimeout(function() {
-      playSound('./assets/sounds/duck-fly.m4a');
-    }, 800);
+      duckFly = playSound('./assets/sounds/duck-fly-long.mp3');
+    }, 100);
+  };
+
+  soundsModule.stopFlightSound = function () {
+    duckFly.remove();
   };
 
   soundsModule.shootSound = function() {
@@ -50,6 +56,8 @@ let soundsModule = {};
       audio.remove(); //Remove when played.
     };
     document.body.appendChild(audio);
+
+    return audio;
   }
 })();
 

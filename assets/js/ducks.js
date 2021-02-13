@@ -29,7 +29,6 @@ const ducksModule = {};
     gameGod.duckCounter = 0;
     const ducksPanel = document.querySelector("#score-panel__ducks");
     for (let i = 0; i < gameGod.duckAmount; i++) {
-      debugger
       ducksPanel.children[i].classList.remove('shot-successful');
       ducksPanel.children[i].classList.remove('shot-failed');
     }
@@ -47,9 +46,9 @@ const ducksModule = {};
   };
 
   function duckFlightStart() {
-    _initBulletsAmount();
     soundsModule.duckFlightSound();
 
+    _initBulletsAmount();
     _drawFlyingDuck();
 
     return mainModule.timeDelay(duckFlightDuration);
@@ -111,7 +110,10 @@ const ducksModule = {};
     // show falling duck and add it animation
     fallingDuck.style.display = 'block';
 
+    soundsModule.stopFlightSound();
+
     await _addDuckAnimation(fallingDuck, { x: ev.clientX, y: ev.clientY }, { x: ev.clientX, y: blockHeight }, duckFallingDelay);
+
     // make dog say wow
     dogModule.dogWow(ev.clientX, dogReactionDuration);
     // remove listener
@@ -122,6 +124,7 @@ const ducksModule = {};
 
   function _whenDuckFlyiesAway() {
     const ducksPanel = document.querySelector("#score-panel__ducks");
+    soundsModule.stopFlightSound();
 
     // make dog laugh
     dogModule.dogLaughs(dogReactionDuration);
@@ -156,7 +159,7 @@ const ducksModule = {};
   function _whenRoundEnds() {
     if (gameGod.errors >= 3) {
       soundsModule.endThemeSound();
-      mainModule.showTextOnScreen('Game over', 10000000);
+      mainModule.showTextOnScreen('Game over <br> Your score: ' + gameGod.score, 10000000);
       gameGod.bulletCounter = 3;
       document.querySelector("#play-again").style.display = 'block';
 

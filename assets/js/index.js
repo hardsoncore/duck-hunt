@@ -31,10 +31,10 @@ const mainModule = {};
   mainModule.nextRound = nextRound;
   // launch the life cycle of our application
   async function nextRound() {
-      showTextOnScreen('Round ' + gameGod.roundNumber);
-      await timeDelay(showingTextDuration);
-      hideTextOnScreen();
-      await ducksModule.ducksFlightCycle(); // uses method from file ducks.js
+    showTextOnScreen('Round ' + gameGod.roundNumber);
+    await timeDelay(showingTextDuration);
+    hideTextOnScreen();
+    await ducksModule.ducksFlightCycle(); // uses method from file ducks.js
   }
 
   mainModule.showTextOnScreen = showTextOnScreen;
