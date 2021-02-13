@@ -83,6 +83,8 @@ const ducksModule = {};
       duration: duration,
       // iterations: Infinity
     });
+
+    return mainModule.timeDelay(duration);
   }
 
   function _drawFlyingDuck() {
@@ -99,7 +101,7 @@ const ducksModule = {};
     flyingDuck.addEventListener('click', _onDuckKilling, true);
   }
 
-  function _onDuckKilling(ev) {
+  async function _onDuckKilling(ev) {
     if (!mainModule.areThereSomeBullets()) return;
 
     // hide flying duck
@@ -107,9 +109,9 @@ const ducksModule = {};
     // show falling duck and add it animation
     fallingDuck.style.display = 'block';
 
-    _addDuckAnimation(fallingDuck, { x: ev.clientX, y: ev.clientY }, { x: ev.clientX, y: blockHeight }, duckFallingDelay);
+    await _addDuckAnimation(fallingDuck, { x: ev.clientX, y: ev.clientY }, { x: ev.clientX, y: blockHeight }, duckFallingDelay);
     // make dog say wow
-    dogModule.dogWow(ev.clientX, dogReactionDuration, duckFallingDelay);
+    dogModule.dogWow(ev.clientX, dogReactionDuration);
     // remove listener
     flyingDuck.removeEventListener('click', _onDuckKilling, true);
     // change score

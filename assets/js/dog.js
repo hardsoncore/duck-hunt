@@ -22,20 +22,18 @@ let dogModule = {};
     dogIntroEl.remove();
   }
 
-  dogModule.dogWow = function(position, duration, delay) {
+  dogModule.dogWow = function(position, duration) {
+    const dog = document.querySelector("#dog");
+    dog.style.display = 'block';
+    dog.style.left = position + 'px';
+    dog.classList.add('dog-catch-duck');
+
+    soundsModule.dogWowSound();
+
     setTimeout(function() {
-      const dog = document.querySelector("#dog");
-      dog.style.display = 'block';
-      dog.style.left = position + 'px';
-      dog.classList.add('dog-catch-duck');
-
-      soundsModule.dogWowSound();
-
-      setTimeout(function() {
-        dog.classList.remove('dog-catch-duck');
-        dog.style.display = 'none';
-      }, duration);
-    }, delay);
+      dog.classList.remove('dog-catch-duck');
+      dog.style.display = 'none';
+    }, duration);
   };
 
   dogModule.dogLaughs = function(duration) {
