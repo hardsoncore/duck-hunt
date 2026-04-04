@@ -18,12 +18,12 @@ The game is fully playable in modern browser.
 <br>
 Stop looking at the code — it's time to play!<br>
 Let's see: is your aim better now than in your school days?
+
 <div align="center">
   <a href="https://hardsoncore.github.io/duck-hunt">
-    <kbd> <br> ▶ PLAY NOW <br> </kbd>
+    <img src="./assets/images/play.jpeg" alt="▶ PLAY NOW" width="120" style="image-rendering: pixelated;" />
   </a>
 </div>
-
 
 ## 🛠 Tech Stack
 
