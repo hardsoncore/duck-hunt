@@ -19,6 +19,7 @@ const ducksModule = {};
   const bulletsPanel = document.querySelector('#score-panel__bullets');
   const ducksPanel = document.querySelector('#score-panel__ducks');
   const scoreElement = document.querySelector('#score');
+  let directionFlipTimers = [];
 
   function _initBulletsAmount() {
     gameGod.bulletCounter = 0;
@@ -61,6 +62,7 @@ const ducksModule = {};
   function afterDuckFlight(i) {
     if (!_isDuckKilled()) _whenDuckFliesAway();
 
+    _clearDirectionFlipTimers();
     // remove listener
     flyingDuck.removeEventListener('click', _onDuckKilling, true);
 
@@ -71,21 +73,85 @@ const ducksModule = {};
     return Math.round(Math.random() * blockWidth);
   }
 
-  function _addDuckAnimation(duck, start, end, duration) {
-    duck.animate([
-      { // from
-        left: start.x + 'px',
-        top: start.y + 'px'
-      },
-      { // to
-        left: end.x + 'px',
-        top: end.y + 'px'
-      }
-    ], {
+  function _clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function _buildBrokenTrajectory(start, end) {
+    const firstPoint = {
+      x: _clamp(start.x + (Math.random() * 500 - 250), 0, blockWidth),
+      y: start.y - (blockHeight * 0.35 + Math.random() * blockHeight * 0.1),
+    };
+    const secondPoint = {
+      x: _clamp(end.x + (Math.random() * 500 - 250), 0, blockWidth),
+      y: start.y - (blockHeight * 0.7 + Math.random() * blockHeight * 0.1),
+    };
+
+    return [start, firstPoint, secondPoint, end];
+  }
+
+  function _buildDirectionSchedule(points) {
+    let currentDirection = 1;
+
+    return points.map((point, index) => {
+      const nextPoint = points[index + 1];
+      const previousPoint = points[index - 1];
+      const deltaX = nextPoint
+        ? nextPoint.x - point.x
+        : previousPoint
+          ? point.x - previousPoint.x
+          : 0;
+
+      if (deltaX > 0) currentDirection = 1;
+      if (deltaX < 0) currentDirection = -1;
+
+      return currentDirection;
+    });
+  }
+
+  function _setDuckDirectionInstantly(direction) {
+    flyingDuck.style.transform = 'scaleX(' + direction + ')';
+  }
+
+  function _clearDirectionFlipTimers() {
+    directionFlipTimers.forEach((timerId) => clearTimeout(timerId));
+    directionFlipTimers = [];
+  }
+
+  function _scheduleDirectionFlips(pathPoints, duration) {
+    const directionSchedule = _buildDirectionSchedule(pathPoints);
+    const segmentDuration = duration / Math.max(1, pathPoints.length - 1);
+
+    _clearDirectionFlipTimers();
+
+    directionSchedule.forEach((direction, index) => {
+      const timerId = setTimeout(() => {
+        _setDuckDirectionInstantly(direction);
+      }, index * segmentDuration);
+
+      directionFlipTimers.push(timerId);
+    });
+  }
+
+  function _buildPositionKeyframes(points) {
+    return points.map((point) => ({
+      left: point.x + 'px',
+      top: point.y + 'px',
+    }));
+  }
+
+  function _addDuckAnimation(duck, start, end, duration, pathType = 'linear') {
+    const pathPoints =
+      pathType === 'broken' ? _buildBrokenTrajectory(start, end) : [start, end];
+    const keyframes = _buildPositionKeyframes(pathPoints);
+
+    duck.animate(keyframes, {
       // timing options
       duration: duration,
       // iterations: Infinity
     });
+
+    if (duck === flyingDuck) _scheduleDirectionFlips(pathPoints, duration);
 
     return mainModule.timeDelay(duration);
   }
@@ -95,11 +161,15 @@ const ducksModule = {};
     const endPoint = _getRandomHorizontalStartPoint();
 
     flyingDuck.style.display = 'block';
-    // reset duck rotation before animation starts
     flyingDuck.style.transform = 'scaleX(1)';
-    if (endPoint < startPoint) flyingDuck.style.transform = 'scaleX(-1)'; // change duck rotation
 
-    _addDuckAnimation(flyingDuck, { x: startPoint, y: blockHeight }, { x: endPoint, y: -100 }, duckFlightDuration);
+    _addDuckAnimation(
+      flyingDuck,
+      { x: startPoint, y: blockHeight },
+      { x: endPoint, y: -100 },
+      duckFlightDuration,
+      'broken',
+    );
 
     flyingDuck.addEventListener('click', _onDuckKilling, true);
   }
@@ -113,6 +183,7 @@ const ducksModule = {};
     fallingDuck.style.display = 'block';
 
     soundsModule.stopFlightSound();
+    _clearDirectionFlipTimers();
 
     await _addDuckAnimation(fallingDuck, { x: ev.clientX, y: ev.clientY }, { x: ev.clientX, y: blockHeight }, duckFallingDelay);
 
