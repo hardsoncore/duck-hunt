@@ -37,9 +37,11 @@ const ducksModule = {};
   }
 
   ducksModule.ducksFlightCycle = async function () {
+    const mimimumFlightDuration = 800;
+
     duckFlightDuration = Math.max(
-      800,
-      duckFlightDuration - gameGod.roundNumber * 100,
+      mimimumFlightDuration,
+      duckFlightDuration - (gameGod.roundNumber / 2) * 100, // change speed by reducing flight duration each round
     );
 
     for (let i = 0; i < gameGod.duckAmount; i++) {
@@ -222,7 +224,7 @@ const ducksModule = {};
     gameGod.duckCounter++;
 
     // change highscore
-    const score = Number(gameGod.score) + gameGod.roundNumber;
+    const score = Number(gameGod.score) + gameGod.roundNumber * 5;
     gameGod.score = String(score).padStart(5, '0');
 
     scoreElement.textContent = gameGod.score;
