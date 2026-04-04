@@ -21,6 +21,14 @@ const ducksModule = {};
   const scoreElement = document.querySelector('#score');
   let directionFlipTimers = [];
 
+  function _getDuckWidth() {
+    return flyingDuck.offsetWidth || 70;
+  }
+
+  function _getMaxVisibleDuckX() {
+    return blockWidth - _getDuckWidth();
+  }
+
   function _initBulletsAmount() {
     gameGod.bulletCounter = 0;
     for (let i = 0; i < gameGod.bulletAmount; i++) {
@@ -82,7 +90,7 @@ const ducksModule = {};
   }
 
   function _getRandomHorizontalStartPoint() {
-    return Math.round(Math.random() * blockWidth);
+    return Math.round(Math.random() * _getMaxVisibleDuckX());
   }
 
   function _clamp(value, min, max) {
@@ -91,12 +99,14 @@ const ducksModule = {};
 
   function _buildBrokenTrajectory(start, end) {
     const horizontalOffsetLimit = 250;
+    const minX = 0;
+    const maxX = _getMaxVisibleDuckX();
     const firstPoint = {
       x: _clamp(
         start.x +
           (Math.random() * horizontalOffsetLimit * 2 - horizontalOffsetLimit),
-        0,
-        blockWidth,
+        minX,
+        maxX,
       ),
       y: start.y - (blockHeight * 0.35 + Math.random() * blockHeight * 0.1),
     };
@@ -104,8 +114,8 @@ const ducksModule = {};
       x: _clamp(
         end.x +
           (Math.random() * horizontalOffsetLimit * 2 - horizontalOffsetLimit),
-        0,
-        blockWidth,
+        minX,
+        maxX,
       ),
       y: start.y - (blockHeight * 0.7 + Math.random() * blockHeight * 0.1),
     };
