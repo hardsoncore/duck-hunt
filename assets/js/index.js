@@ -20,7 +20,7 @@ const mainModule = {};
   const scoreElement = document.querySelector('#score');
   const startButton = document.querySelector('#start');
   const bulletsPanel = document.querySelector('#score-panel__bullets');
-  const bestScore = localStorage.getItem('bestScore') || 0;
+  let bestScore = Number(localStorage.getItem('bestScore') || 0);
 
   // add shooting listener
   document.body.addEventListener('click', _onShoot);
@@ -73,9 +73,11 @@ const mainModule = {};
 
   mainModule.gameOver = gameOver;
   function gameOver() {
-    if (gameGod.score > bestScore) {
-      bestScore = gameGod.score;
-      localStorage.setItem('bestScore', gameGod.score);
+    const currentScore = Number(gameGod.score);
+
+    if (currentScore > bestScore) {
+      bestScore = currentScore;
+      localStorage.setItem('bestScore', String(currentScore));
     }
 
     soundsModule.endThemeSound();
