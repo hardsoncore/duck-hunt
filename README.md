@@ -10,6 +10,8 @@ No cartridges or light guns required - just your browser, some nostalgia, and du
   <img src="./assets/images/duck-hunt-nes.gif" alt="game" />
 </p>
 
+*inspired by <a href="https://www.albertopasca.it/whiletrue/nintendo-duck-hunt-clone/">this article</a>
+
 ## 🎮 Play Now In Your Browser
 The game is fully playable in modern browser. 
 <br>
