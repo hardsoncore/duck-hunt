@@ -78,12 +78,23 @@ const ducksModule = {};
   }
 
   function _buildBrokenTrajectory(start, end) {
+    const horizontalOffsetLimit = 250;
     const firstPoint = {
-      x: _clamp(start.x + (Math.random() * 500 - 250), 0, blockWidth),
+      x: _clamp(
+        start.x +
+          (Math.random() * horizontalOffsetLimit * 2 - horizontalOffsetLimit),
+        0,
+        blockWidth,
+      ),
       y: start.y - (blockHeight * 0.35 + Math.random() * blockHeight * 0.1),
     };
     const secondPoint = {
-      x: _clamp(end.x + (Math.random() * 500 - 250), 0, blockWidth),
+      x: _clamp(
+        end.x +
+          (Math.random() * horizontalOffsetLimit * 2 - horizontalOffsetLimit),
+        0,
+        blockWidth,
+      ),
       y: start.y - (blockHeight * 0.7 + Math.random() * blockHeight * 0.1),
     };
 
@@ -229,20 +240,14 @@ const ducksModule = {};
 
   function _whenRoundEnds() {
     if (gameGod.errors >= 3) {
-      soundsModule.endThemeSound();
-      mainModule.showTextOnScreen('Game over <br> Your score: ' + gameGod.score, 10000000);
-      gameGod.bulletCounter = 3;
-      document.querySelector("#play-again").style.display = 'block';
-
-      mainModule.hideScorePanel();
+      mainModule.gameOver();
+      return;
     }
 
-    if (gameGod.errors < 3) {
-      gameGod.roundNumber++;
-      _clearDucksPanel();
+    gameGod.roundNumber++;
+    _clearDucksPanel();
 
-      mainModule.nextRound();
-    }
+    mainModule.nextRound();
   }
 
 })();

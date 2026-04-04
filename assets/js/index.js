@@ -20,6 +20,7 @@ const mainModule = {};
   const scoreElement = document.querySelector('#score');
   const startButton = document.querySelector('#start');
   const bulletsPanel = document.querySelector('#score-panel__bullets');
+  const bestScore = localStorage.getItem('bestScore') || 0;
 
   // add shooting listener
   document.body.addEventListener('click', _onShoot);
@@ -68,6 +69,27 @@ const mainModule = {};
 
     lifecycle();
     startButton.style.display = 'none';
+  }
+
+  mainModule.gameOver = gameOver;
+  function gameOver() {
+    if (gameGod.score > bestScore) {
+      bestScore = gameGod.score;
+      localStorage.setItem('bestScore', gameGod.score);
+    }
+
+    soundsModule.endThemeSound();
+    mainModule.showTextOnScreen(
+      `<h1>Game over</h1>
+        <br>
+        <p>Your score: ${gameGod.score}</p>
+        <p>Your best score: ${bestScore}</p>`,
+      10000000,
+    );
+    gameGod.bulletCounter = 3;
+    document.querySelector('#play-again').style.display = 'block';
+
+    mainModule.hideScorePanel();
   }
 
   mainModule.playAgain = playAgain;
