@@ -21,7 +21,7 @@ Let's see: is your aim better now than in your school days?
 
 <div align="center">
   <a href="https://hardsoncore.github.io/duck-hunt">
-    <img src="./assets/images/play.jpeg" alt="▶ PLAY NOW" width="120" style="image-rendering: pixelated;" />
+    <img src="./assets/images/play.png" alt="▶ PLAY NOW" width="120" style="image-rendering: pixelated;" />
   </a>
 </div>
 
