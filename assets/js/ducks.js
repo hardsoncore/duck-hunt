@@ -46,7 +46,8 @@ const ducksModule = {};
 
     for (let i = 0; i < gameGod.duckAmount; i++) {
         await duckFlightStart();
-        await afterDuckFlight(i);
+
+        if (await afterDuckFlight(i)) return;
     }
 
     _whenRoundEnds();
@@ -64,11 +65,20 @@ const ducksModule = {};
   function afterDuckFlight(i) {
     if (!_isDuckKilled()) _whenDuckFliesAway();
 
+    if (gameGod.errors >= 3) {
+      return mainModule.timeDelay(dogReactionDuration).then(function () {
+        mainModule.gameOver();
+        return true;
+      });
+    }
+
     _clearDirectionFlipTimers();
     // remove listener
     flyingDuck.removeEventListener('click', _onDuckKilling, true);
 
-    return mainModule.timeDelay(dogReactionDuration);
+    return mainModule.timeDelay(dogReactionDuration).then(function () {
+      return false;
+    });
   }
 
   function _getRandomHorizontalStartPoint() {
@@ -241,14 +251,8 @@ const ducksModule = {};
   }
 
   function _whenRoundEnds() {
-    if (gameGod.errors >= 3) {
-      mainModule.gameOver();
-      return;
-    }
-
     gameGod.roundNumber++;
     _clearDucksPanel();
-
     mainModule.nextRound();
   }
 
