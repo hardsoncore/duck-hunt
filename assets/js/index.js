@@ -17,6 +17,9 @@ const mainModule = {};
   const showingTextDuration = 1000;
   const textTable = document.getElementsByClassName('text-table')[0]; // main header of the page, signalazing about smth
   const scorePanel = document.getElementsByClassName('score-panel')[0];
+  const scoreElement = document.querySelector('#score');
+  const startButton = document.querySelector('#start');
+  const bulletsPanel = document.querySelector('#score-panel__bullets');
 
   // add shooting listener
   document.body.addEventListener('click', _onShoot);
@@ -40,7 +43,7 @@ const mainModule = {};
   mainModule.showTextOnScreen = showTextOnScreen;
   function showTextOnScreen(text) {
     textTable.innerHTML = text;
-    textTable.style.display='block';
+    textTable.style.display = 'block';
   }
 
   mainModule.hideTextOnScreen = hideTextOnScreen;
@@ -50,21 +53,21 @@ const mainModule = {};
   }
 
   function showScorePanel() {
-    document.querySelector("#score").innerHTML = gameGod.score;
+    scoreElement.textContent = gameGod.score;
     scorePanel.style.display = 'block';
   }
 
   mainModule.hideScorePanel = function() {
-    document.querySelector("#score").innerHTML = gameGod.score;
+    scoreElement.textContent = gameGod.score;
     scorePanel.style.display = 'none';
   };
 
   mainModule.startGame = startGame;
   function startGame(ev) {
-    ev.stopPropagation();
+    if (ev) ev.stopPropagation();
 
     lifecycle();
-    document.querySelector("#start").style.display = 'none';
+    startButton.style.display = 'none';
   }
 
   mainModule.playAgain = playAgain;
@@ -76,9 +79,7 @@ const mainModule = {};
   mainModule.timeDelay = timeDelay;
   function timeDelay(delay) {
     return new Promise(function (resolve) {
-      setTimeout(function () {
-        return resolve();
-      }, delay);
+      setTimeout(resolve, delay);
     });
   }
 
@@ -92,8 +93,6 @@ const mainModule = {};
     if (!areThereSomeBullets()) return;
 
     soundsModule.shootSound();
-
-    const bulletsPanel = document.querySelector("#score-panel__bullets");
     bulletsPanel.children[gameGod.bulletCounter].style.display = 'none';
 
     gameGod.bulletCounter++;
@@ -105,6 +104,6 @@ const mainModule = {};
 
 })();
 
-window.onload = function() {
+window.addEventListener('load', function () {
   document.body.style.display = 'block';
-};
+});
