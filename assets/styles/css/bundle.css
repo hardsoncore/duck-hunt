@@ -298,10 +298,7 @@
     transform: scaleX(-1);
   }
 }
-@font-face {
-  font-family: '8bit-font';
-  src: url("../../fonts/8bitwonder.ttf");
-}
+
 @font-face {
   font-family: '8bit-font';
   src: url("../../fonts/8bitwonder.ttf");
@@ -334,6 +331,7 @@ body {
   top: 30%;
   left: 0;
   right: 0;
+  z-index: 2;
 }
 
 .score-panel {
@@ -421,3 +419,4 @@ body {
     display: block;
   }
 }
+
