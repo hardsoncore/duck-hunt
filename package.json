@@ -1,21 +1,12 @@
 {
   "name": "duck-hunt",
   "version": "1.0.0",
-  "description": "nostalgic game dev try",
-  "main": "gulpfile.js",
+  "description": "A nostalgic pet project recreating the classic 8-bit childhood game using web technologies. Created during Covid-19 lockdown",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "gulp",
-    "gulp default": "gulp default"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "hardsoncore",
   "license": "ISC",
-  "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-concat-css": "^3.1.0",
-    "gulp-livereload": "^4.0.2",
-    "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.2"
-  },
+  "devDependencies": {},
   "dependencies": {}
 }
