@@ -312,9 +312,21 @@ body {
   height: 100vh;
   overflow: hidden;
   display: none;
+  z-index: 0;
 }
 
 #stage-background {
+  background-image: url("../../images/background-2.png");
+    background-repeat: repeat-x;
+    background-position: left 0 bottom;
+    min-height: 100vh;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  
+  #stage-background-with-trees {
   background-image: url("../../images/background-1.png");
   background-repeat: repeat-x;
   background-position: left 0 bottom;
@@ -323,6 +335,7 @@ body {
   position: absolute;
   left: 0;
   right: 0;
+  z-index: -1;
 }
 
 .text-table {
