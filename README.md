@@ -6,10 +6,22 @@ A nostalgic pet project created during the long COVID-19 lockdown. When being st
 
 No cartridges or light guns required - just your browser, some nostalgia, and ducks.
 
-## 🎮 Play Online
+<p align="center">
+  <img src="./assets/images/duck-hunt-nes.gif" alt="game" />
+</p>
 
-The game is fully playable in your browser. 
-👉 **[Shoot some ducks here](https://hardsoncore.github.io/duck-hunt)**
+## 🎮 Play Now In Your Browser
+The game is fully playable in modern browser. 
+<br>
+<br>
+Stop looking at the code — it's time to play!<br>
+Let's see: is your aim better now than in your school days?
+<div align="center">
+  <a href="https://hardsoncore.github.io/duck-hunt">
+    <kbd> <br> ▶ PLAY NOW <br> </kbd>
+  </a>
+</div>
+
 
 ## 🛠 Tech Stack
 
