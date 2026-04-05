@@ -306,6 +306,7 @@
 
 body {
   position: relative;
+  cursor: crosshair;
   margin: 0;
   background-color: #3bbcfc;
   font-family: '8bit-font';
@@ -325,7 +326,7 @@ body {
     left: 0;
     right: 0;
   }
-  
+
   #stage-background-with-trees {
   background-image: url("../../images/background-1.png");
   background-repeat: repeat-x;
