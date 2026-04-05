@@ -25,8 +25,12 @@ const dogModule = {};
   dogModule.dogWow = function (position, duration) {
     const dog = document.querySelector('#dog');
     dog.style.display = 'block';
-    dog.style.left = position + 'px';
     dog.classList.add('dog-catch-duck');
+
+    const dogWidth = dog.offsetWidth || 120;
+    const centeredPosition = position - dogWidth / 2;
+
+    dog.style.left = centeredPosition + 'px';
 
     soundsModule.dogWowSound();
 
