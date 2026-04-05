@@ -1,7 +1,7 @@
 # 🦆 8bit Drake Hunter
 
-![Status](https://img.shields.io/badge/Status-Legacy_2020-yellow?style=for-the-badge) 
-![Educational Purpose](https://img.shields.io/badge/Note-Educational_purpose_only-blue?style=for-the-badge) 
+![Status](https://img.shields.io/badge/Status-Legacy_2020-yellow?style=for-the-badge)
+![Educational Purpose](https://img.shields.io/badge/Note-Educational_purpose_only-blue?style=for-the-badge)
 ![Fan Tribute](https://img.shields.io/badge/Disclaimer-Non--commercial_fan_tribute-red?style=for-the-badge)
 
 A nostalgic pet project created during the long COVID-19 lockdown. When being stuck at home became a bit too much, I decided to fight the boredom by recreating one of my favorite 8-bit childhood games (the classic from the Dendy/NES era) using web technologies.
@@ -13,13 +13,13 @@ Did this game bring a nostalgic smile to your face?
 Consider giving the repository a ⭐ — your support really means a lot!
 
 <p align="center">
-  <img src="./assets/images/duck-hunt-nes.gif" alt="game" />
+  <img src="./assets/images/demo-nes.gif" alt="game" />
 </p>
 
 *inspired by <a href="https://www.albertopasca.it/whiletrue/nintendo-duck-hunt-clone/">this article</a>
 
 ## 🎮 Play Now In Your Browser
-The game is fully playable in modern browser. 
+The game is fully playable in modern browser.
 <br>
 <br>
 Stop looking at the code — it's time to play!<br>
