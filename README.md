@@ -7,6 +7,9 @@ I even recorded a voice-over myself (quarantine was seriously driving me crazy b
 
 No cartridges or light guns required - just your browser, some nostalgia, and ducks.
 
+Did this game bring a nostalgic smile to your face?
+Consider giving the repository a ⭐ — your support really means a lot!
+
 <p align="center">
   <img src="./assets/images/duck-hunt-nes.gif" alt="game" />
 </p>
