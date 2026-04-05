@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .dog-intro {
   position: absolute;
   background-image: url("../../images/sprite.png");
@@ -240,7 +241,8 @@
     padding-bottom: 0;
   }
 }
-.duck-flying {
+
+.duck-flying, .duck-falling {
   background: url("../../images/sprite.png") no-repeat;
   height: 76px;
   width: 70px;
@@ -251,10 +253,6 @@
 
 .duck-falling {
   background: url("../../images/sprite.png") no-repeat;
-  height: 76px;
-  width: 70px;
-  position: absolute;
-  bottom: 0;
   right: 0;
   animation: duckFall 200ms infinite step-end alternate;
 }
@@ -316,19 +314,8 @@ body {
   z-index: 0;
 }
 
-#stage-background {
+.stage-background, .stage-background-with-trees {
   background-image: url("../../images/background-2.png");
-    background-repeat: repeat-x;
-    background-position: left 0 bottom;
-    min-height: 100vh;
-    pointer-events: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-  }
-
-  #stage-background-with-trees {
-  background-image: url("../../images/background-1.png");
   background-repeat: repeat-x;
   background-position: left 0 bottom;
   min-height: 100vh;
@@ -336,6 +323,10 @@ body {
   position: absolute;
   left: 0;
   right: 0;
+}
+
+.stage-background-with-trees {
+  background-image: url("../../images/background-1.png");
   z-index: -1;
 }
 
@@ -361,7 +352,12 @@ body {
   font-size: 1.4vw;
 }
 
-.score-panel__bullets {
+.score-panel__counter {
+  text-align: center;
+}
+
+.score-panel__bullets,
+.score-panel__ducks {
   display: flex;
   padding: 0;
   margin-top: .2em;
@@ -374,13 +370,6 @@ body {
   height: 20px;
   width: 20px;
   list-style: none;
-}
-
-.score-panel__ducks {
-  display: flex;
-  padding: 0;
-  margin-top: .2em;
-  margin-bottom: .2em;
 }
 
 .score-panel__ducks li {
@@ -399,10 +388,11 @@ body {
   filter: hue-rotate(144deg) brightness(2.5);
 }
 
-#start {
+.btn.start-btn {
   top: 60%;
   bottom: auto;
 }
+
 .btn {
   position: absolute;
   bottom: 0;
@@ -445,7 +435,6 @@ body {
   font-family: monospace;
   text-shadow: #fff 1px 0 10px;
 }
-
 
 .display-rotation-warning {
   display: none;

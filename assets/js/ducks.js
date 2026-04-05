@@ -1,5 +1,10 @@
 const ducksModule = {};
 
+const PATH_TYPES = Object.freeze({
+  LINEAR: 'linear',
+  BROKEN: 'broken',
+});
+
 (function () {
   'use strict';
 
@@ -173,9 +178,17 @@ const ducksModule = {};
     }));
   }
 
-  function _addDuckAnimation(duck, start, end, duration, pathType = 'linear') {
+  function _addDuckAnimation(
+    duck,
+    start,
+    end,
+    duration,
+    pathType = PATH_TYPES.LINEAR,
+  ) {
     const pathPoints =
-      pathType === 'broken' ? _buildBrokenTrajectory(start, end) : [start, end];
+      pathType === PATH_TYPES.BROKEN
+        ? _buildBrokenTrajectory(start, end)
+        : [start, end];
     const keyframes = _buildPositionKeyframes(pathPoints);
 
     duck.animate(keyframes, {
@@ -201,7 +214,7 @@ const ducksModule = {};
       { x: startPoint, y: blockHeight },
       { x: endPoint, y: -100 },
       duckFlightDuration,
-      'broken',
+      PATH_TYPES.BROKEN,
     );
 
     flyingDuck.addEventListener('click', _onDuckKilling, true);
