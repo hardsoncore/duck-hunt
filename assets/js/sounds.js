@@ -33,24 +33,29 @@ const soundsModule = {};
   };
 
   soundsModule.endThemeSound = function () {
-    _playWithDelay('./assets/sounds/end-theme.m4a', 0);
+    _playWithDelay('./assets/sounds/end-theme.m4a', 0, true);
   };
 
-  function _playWithDelay(url, delay) {
+  function _playWithDelay(url, delay, loop = false) {
     setTimeout(function () {
-      playSound(url);
+      playSound(url, loop);
     }, delay);
   }
 
-  function playSound(url) {
+  function playSound(url, loop = false) {
     const audio = document.createElement('audio');
     audio.style.display = 'none';
 
     audio.src = url;
     audio.autoplay = true;
-    audio.onended = function () {
-      audio.remove(); //Remove when played.
-    };
+    audio.loop = loop;
+
+    if (!loop) {
+      audio.onended = function () {
+        audio.remove(); //Remove when played.
+      };
+    }
+
     document.body.appendChild(audio);
 
     return audio;
