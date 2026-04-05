@@ -251,6 +251,10 @@
   animation: duckFly 200ms infinite step-end alternate;
 }
 
+.duck-flying {
+  clip-path: circle(50% at 50% 50%);
+}
+
 .duck-falling {
   background: url("../../images/sprite.png") no-repeat;
   right: 0;
