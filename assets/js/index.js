@@ -19,6 +19,7 @@ const mainModule = {};
   const scorePanel = document.getElementsByClassName('score-panel')[0];
   const scoreElement = document.querySelector('#score');
   const startButton = document.querySelector('#start');
+  const gameLogo = document.querySelector('#game-logo');
   const bulletsPanel = document.querySelector('#score-panel__bullets');
   let bestScore = Number(localStorage.getItem('bestScore') || 0);
 
@@ -69,6 +70,7 @@ const mainModule = {};
 
     lifecycle();
     startButton.style.display = 'none';
+    gameLogo.style.display = 'none';
   }
 
   mainModule.gameOver = gameOver;
@@ -84,8 +86,8 @@ const mainModule = {};
     mainModule.showTextOnScreen(
       `<h1>Game over</h1>
         <br>
-        <p>Your score: ${gameGod.score}</p>
-        <p>Your best score: ${bestScore}</p>`,
+        <p class="high-score-text">Your score: ${gameGod.score}</p>
+        <p class="high-score-text">Your best score: ${bestScore}</p>`,
       10000000,
     );
     gameGod.bulletCounter = 3;

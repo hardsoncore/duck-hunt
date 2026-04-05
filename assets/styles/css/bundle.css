@@ -417,6 +417,20 @@ body {
   display: none;
 }
 
+.high-score-text {
+  font-size: 1.5rem;
+}
+
+.game-logo {
+  font-size: 6rem;
+  text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
 .display-rotation-warning {
   display: none;
   position: absolute;
