@@ -1,6 +1,8 @@
 # 🦆 Retro Duck Hunt (Web Edition)
 
-![Status](https://img.shields.io/badge/Status-Legacy%202020-yellow?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Legacy_2020-yellow?style=for-the-badge) 
+![Educational Purpose](https://img.shields.io/badge/Note-Educational_purpose_only-blue?style=for-the-badge) 
+![Fan Tribute](https://img.shields.io/badge/Disclaimer-Non--commercial_fan_tribute-red?style=for-the-badge)
 
 A nostalgic pet project created during the long COVID-19 lockdown. When being stuck at home became a bit too much, I decided to fight the boredom by recreating one of my favorite 8-bit childhood games (the classic from the Dendy/NES era) using web technologies.
 I even recorded a voice-over myself (quarantine was seriously driving me crazy back then) 🤪.
@@ -41,3 +43,6 @@ Built entirely on the frontend using:
 If you want to run the code on your own machine:
 1. Clone the repository
 2. Run index.html file
+
+---
+<sup>*Disclaimer: This is a non-commercial fan project. All rights to the original game, characters, and assets belong to Nintendo.*</sup>
