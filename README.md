@@ -3,6 +3,7 @@
 ![Status](https://img.shields.io/badge/Status-Legacy%202020-yellow?style=for-the-badge)
 
 A nostalgic pet project created during the long COVID-19 lockdown. When being stuck at home became a bit too much, I decided to fight the boredom by recreating one of my favorite 8-bit childhood games (the classic from the Dendy/NES era) using web technologies.
+I even recorded a voice-over myself (quarantine was seriously driving me crazy back then) 🤪.
 
 No cartridges or light guns required - just your browser, some nostalgia, and ducks.
 
