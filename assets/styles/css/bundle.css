@@ -399,12 +399,16 @@ body {
   filter: hue-rotate(144deg) brightness(2.5);
 }
 
+#start {
+  top: 60%;
+  bottom: auto;
+}
 .btn {
   position: absolute;
   bottom: 0;
   left: 50%;
   background: black;
-  font-size: 2vw;
+  font-size: 2rem;
   color: #fff;
   font-family: inherit;
   padding: .35em .7em;
@@ -431,20 +435,40 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.support-author {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  font-family: monospace;
+  text-shadow: #fff 1px 0 10px;
+}
+
+
 .display-rotation-warning {
   display: none;
   position: absolute;
   top: 40%;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 3.5vw;
   padding: 1em;
-  background-color: gray;
+  color: #fff;
+  background-color: #000;
+  white-space: nowrap;
 }
 
 @media screen and (orientation: portrait) {
   .display-rotation-warning {
     display: block;
+  }
+
+  .game-logo,
+  #start,
+  #play-again {
+    display: none;
   }
 }
 

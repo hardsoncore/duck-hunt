@@ -20,6 +20,7 @@ const mainModule = {};
   const scoreElement = document.querySelector('#score');
   const startButton = document.querySelector('#start');
   const gameLogo = document.querySelector('#game-logo');
+  const supportRepo = document.querySelector('#support-author');
   const bulletsPanel = document.querySelector('#score-panel__bullets');
   let bestScore = Number(localStorage.getItem('bestScore') || 0);
 
@@ -71,6 +72,7 @@ const mainModule = {};
     lifecycle();
     startButton.style.display = 'none';
     gameLogo.style.display = 'none';
+    supportRepo.style.display = 'none';
   }
 
   mainModule.gameOver = gameOver;
