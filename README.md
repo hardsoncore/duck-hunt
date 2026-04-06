@@ -1,4 +1,4 @@
-# 🦆 8bit Drake Hunter
+# 🦆 8bit Hunt
 
 ![Status](https://img.shields.io/badge/Status-Legacy_2020-yellow?style=for-the-badge)
 ![Educational Purpose](https://img.shields.io/badge/Note-Educational_purpose_only-blue?style=for-the-badge)
