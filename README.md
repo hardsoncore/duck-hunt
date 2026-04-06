@@ -34,9 +34,9 @@ Let's see: is your aim better now than in your school days?
 ## 🛠 Tech Stack
 
 Built entirely on the frontend using:
-* **Pure JS** — for the core game logic and mechanics.
+* **Vanilla JS** — for the core game logic and mechanics.
 * **HTML5 & CSS3** — for the structure, layout, and retro styling.
-* No heavy frameworks, just vanilla web technologies!
+* No heavy frameworks, just pure web technologies!
 
 ## 🚀 How to Run Locally
 
