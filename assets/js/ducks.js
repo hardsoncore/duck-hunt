@@ -24,6 +24,11 @@ const PATH_TYPES = Object.freeze({
   const bulletsPanel = document.querySelector('#score-panel__bullets');
   const ducksPanel = document.querySelector('#score-panel__ducks');
   const scoreElement = document.querySelector('#score');
+
+  let currentDuckColor = 'black';
+  const duckColors = ['black', 'blue', 'red'];
+  let currentDuckDirection = 'side';
+  const duckDirections = ['up', 'straight', 'side'];
   let directionFlipTimers = [];
 
   function _getDuckWidth() {
@@ -206,8 +211,11 @@ const PATH_TYPES = Object.freeze({
     const startPoint = _getRandomHorizontalStartPoint();
     const endPoint = _getRandomHorizontalStartPoint();
 
+    currentDuckColor = duckColors[Math.floor(Math.random() * duckColors.length)];
+
     flyingDuck.style.display = 'block';
     flyingDuck.style.transform = 'scaleX(1)';
+    flyingDuck.style.animationName = `duckFly--${currentDuckColor}-${currentDuckDirection}`;
 
     _addDuckAnimation(
       flyingDuck,
@@ -227,6 +235,7 @@ const PATH_TYPES = Object.freeze({
     flyingDuck.style.display = 'none';
     // show falling duck and add it animation
     fallingDuck.style.display = 'block';
+    fallingDuck.style.animationName = `duckFall--${currentDuckColor}`;
 
     soundsModule.stopFlightSound();
     _clearDirectionFlipTimers();
