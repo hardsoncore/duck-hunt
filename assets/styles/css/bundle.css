@@ -248,7 +248,7 @@
   width: 70px;
   position: absolute;
   bottom: 0;
-  animation: duckFly 200ms infinite step-end alternate;
+  animation: duckFly 150ms infinite step-end alternate;
 }
 
 .duck-flying {
@@ -258,12 +258,12 @@
 .duck-falling {
   background: url("../../images/sprite.png") no-repeat;
   right: 0;
-  animation: duckFall 200ms infinite step-end alternate;
+  animation: duckFall 100ms infinite step-end alternate;
 }
 
 @keyframes duckFly {
   0% {
-    background-position: -265px -230px;
+    background-position: -260px -226px;
   }
 
   33% {
@@ -271,11 +271,35 @@
   }
 
   66% {
-    background-position: -418px -230px;
+    background-position: -420px -240px;
+  }
+}
+
+@keyframes duckFly--blue {
+  0% {
+    background-position: -0px -226px;
   }
 
-  100% {
-    background-position: -425px -230px;
+  33% {
+    background-position: -80px -230px;
+  }
+
+  66% {
+    background-position: -160px -240px;
+  }
+}
+
+@keyframes duckFly--red {
+  0% {
+    background-position: -520px -226px;
+  }
+
+  33% {
+    background-position: -600px -230px;
+  }
+
+  66% {
+    background-position: -680px -240px;
   }
 }
 
@@ -285,17 +309,7 @@
     transform: scaleX(1);
   }
 
-  33% {
-    background-position: -340px -475px;
-    transform: scaleX(-1);
-  }
-
-  66% {
-    background-position: -340px -475px;
-    transform: scaleX(1);
-  }
-
-  100% {
+  50% {
     background-position: -340px -475px;
     transform: scaleX(-1);
   }
