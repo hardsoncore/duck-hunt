@@ -29,7 +29,7 @@ const PATH_TYPES = Object.freeze({
   const duckColors = ['black', 'blue', 'red'];
   let currentDuckDirection = 'side';
   const duckDirections = ['up', 'straight', 'side'];
-  let directionFlipTimers = [];
+  let flightStateTimers = [];
 
   function _getDuckWidth() {
     return flyingDuck.offsetWidth || 70;
@@ -90,7 +90,7 @@ const PATH_TYPES = Object.freeze({
       });
     }
 
-    _clearDirectionFlipTimers();
+    _clearFlightStateTimers();
     // remove listener
     flyingDuck.removeEventListener('click', _onDuckKilling, true);
 
@@ -156,23 +156,59 @@ const PATH_TYPES = Object.freeze({
     flyingDuck.style.transform = 'scaleX(' + direction + ')';
   }
 
-  function _clearDirectionFlipTimers() {
-    directionFlipTimers.forEach((timerId) => clearTimeout(timerId));
-    directionFlipTimers = [];
+  function _getDuckFlightDirection(start, end) {
+    const deltaX = end.x - start.x;
+    const deltaY = start.y - end.y;
+    const verticalAngle =
+      (Math.atan2(Math.abs(deltaX), Math.abs(deltaY)) * 180) / Math.PI;
+
+    if (verticalAngle <= 10) return 'straight';
+    if (verticalAngle <= 40) return 'up';
+
+    return 'side';
   }
 
-  function _scheduleDirectionFlips(pathPoints, duration) {
+  function _getDuckColor() {
+    const randomIndex = Math.floor(Math.random() * duckColors.length);
+    return duckColors[randomIndex];
+  }
+
+  function _setDuckFlightAnimation(direction) {
+    currentDuckDirection = direction;
+    flyingDuck.style.animationName = `duckFly--${currentDuckColor}-${currentDuckDirection}`;
+  }
+
+  function _clearFlightStateTimers() {
+    flightStateTimers.forEach((timerId) => clearTimeout(timerId));
+    flightStateTimers = [];
+  }
+
+  function _buildFlightTypeSchedule(points) {
+    return points.map((point, index) => {
+      const nextPoint = points[index + 1];
+      const previousPoint = points[index - 1];
+
+      if (nextPoint) return _getDuckFlightDirection(point, nextPoint);
+      if (previousPoint) return _getDuckFlightDirection(previousPoint, point);
+
+      return duckDirections[1];
+    });
+  }
+
+  function _scheduleFlightStateUpdates(pathPoints, duration) {
     const directionSchedule = _buildDirectionSchedule(pathPoints);
+    const flightTypeSchedule = _buildFlightTypeSchedule(pathPoints);
     const segmentDuration = duration / Math.max(1, pathPoints.length - 1);
 
-    _clearDirectionFlipTimers();
+    _clearFlightStateTimers();
 
     directionSchedule.forEach((direction, index) => {
       const timerId = setTimeout(() => {
+        _setDuckFlightAnimation(flightTypeSchedule[index]);
         _setDuckDirectionInstantly(direction);
       }, index * segmentDuration);
 
-      directionFlipTimers.push(timerId);
+      flightStateTimers.push(timerId);
     });
   }
 
@@ -202,7 +238,7 @@ const PATH_TYPES = Object.freeze({
       // iterations: Infinity
     });
 
-    if (duck === flyingDuck) _scheduleDirectionFlips(pathPoints, duration);
+    if (duck === flyingDuck) _scheduleFlightStateUpdates(pathPoints, duration);
 
     return mainModule.timeDelay(duration);
   }
@@ -210,17 +246,19 @@ const PATH_TYPES = Object.freeze({
   function _drawFlyingDuck() {
     const startPoint = _getRandomHorizontalStartPoint();
     const endPoint = _getRandomHorizontalStartPoint();
+    const start = { x: startPoint, y: blockHeight };
+    const end = { x: endPoint, y: -100 };
 
-    currentDuckColor = duckColors[Math.floor(Math.random() * duckColors.length)];
+    currentDuckColor = _getDuckColor();
 
     flyingDuck.style.display = 'block';
     flyingDuck.style.transform = 'scaleX(1)';
-    flyingDuck.style.animationName = `duckFly--${currentDuckColor}-${currentDuckDirection}`;
+    _setDuckFlightAnimation(_getDuckFlightDirection(start, end));
 
     _addDuckAnimation(
       flyingDuck,
-      { x: startPoint, y: blockHeight },
-      { x: endPoint, y: -100 },
+      start,
+      end,
       duckFlightDuration,
       PATH_TYPES.BROKEN,
     );
@@ -238,7 +276,7 @@ const PATH_TYPES = Object.freeze({
     fallingDuck.style.animationName = `duckFall--${currentDuckColor}`;
 
     soundsModule.stopFlightSound();
-    _clearDirectionFlipTimers();
+    _clearFlightStateTimers();
 
     await _addDuckAnimation(fallingDuck, { x: ev.clientX, y: ev.clientY }, { x: ev.clientX, y: blockHeight }, duckFallingDelay);
 
