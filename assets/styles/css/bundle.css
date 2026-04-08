@@ -18,7 +18,7 @@
 .dog-laughs {
   position: absolute;
   left: 700px;
-  height: 100px;
+  height: 95px;
   width: 120px;
   background-image: url("../../images/sprite.png");
   animation-name: dogShowHide, dogLaughs;
@@ -228,17 +228,17 @@
 
 @keyframes dogLaughs {
   0% {
-    background-position: -340px -100px;
+    background-position: -340px -105px;
     padding-bottom: 0;
   }
 
   50% {
-    background-position: -460px -100px;
+    background-position: -460px -105px;
     padding-bottom: 5px;
   }
 
   100% {
-    background-position: -340px -100px;
+    background-position: -340px -105px;
     padding-bottom: 0;
   }
 }
