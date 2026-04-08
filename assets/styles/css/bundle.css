@@ -516,8 +516,14 @@ body {
 }
 
 .btn.start-btn {
-  top: 60%;
+  top: 70%;
   bottom: auto;
+  box-shadow: 4px 4px 7px #333;
+}
+
+.btn.start-btn:hover {
+  cursor: pointer;
+  background: #f3b416;
 }
 
 .btn {
