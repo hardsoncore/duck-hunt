@@ -22,7 +22,7 @@
   width: 120px;
   background-image: url("../../images/sprite.png");
   animation-name: dogShowHide, dogLaughs;
-  animation-iteration-count: 1, 10;
+  animation-iteration-count: 1, 16;
   animation-duration: 2s, .5s;
   animation-timing-function: linear, steps(1, end);
   animation-fill-mode: forwards, forwards;
@@ -248,7 +248,7 @@
   width: 70px;
   position: absolute;
   bottom: 0;
-  animation: duckFly 150ms infinite step-end alternate;
+  animation: duckFly--black-up 130ms infinite step-end alternate;
 }
 
 .duck-flying {
@@ -258,10 +258,10 @@
 .duck-falling {
   background: url("../../images/sprite.png") no-repeat;
   right: 0;
-  animation: duckFall 100ms infinite step-end alternate;
+  animation: duckFall--black 90ms infinite step-end alternate;
 }
 
-@keyframes duckFly {
+@keyframes duckFly--black-side {
   0% {
     background-position: -260px -226px;
   }
@@ -275,7 +275,35 @@
   }
 }
 
-@keyframes duckFly--blue {
+@keyframes duckFly--black-straight {
+  0% {
+    background-position: -260px -393px;
+  }
+
+  33% {
+    background-position: -340px -393px;
+  }
+
+  66% {
+    background-position: -420px -395px;
+  }
+}
+
+@keyframes duckFly--black-up {
+  0% {
+    background-position: -262px -309px;
+  }
+
+  33% {
+    background-position: -340px -311px;
+  }
+
+  66% {
+    background-position: -416px -313px;
+  }
+}
+
+@keyframes duckFly--blue-side {
   0% {
     background-position: -0px -226px;
   }
@@ -289,7 +317,35 @@
   }
 }
 
-@keyframes duckFly--red {
+@keyframes duckFly--blue-straight {
+  0% {
+    background-position: -0px -393px;
+  }
+
+  33% {
+    background-position: -80px -393px;
+  }
+
+  66% {
+    background-position: -160px -395px;
+  }
+}
+
+@keyframes duckFly--blue-up {
+  0% {
+    background-position: -0px -309px;
+  }
+
+  33% {
+    background-position: -78px -311px;
+  }
+
+  66% {
+    background-position: -154px -313px;
+  }
+}
+
+@keyframes duckFly--red-side {
   0% {
     background-position: -520px -226px;
   }
@@ -303,7 +359,35 @@
   }
 }
 
-@keyframes duckFall {
+@keyframes duckFly--red-straight {
+  0% {
+    background-position: -520px -393px;
+  }
+
+  33% {
+    background-position: -600px -393px;
+  }
+
+  66% {
+    background-position: -680px -395px;
+  }
+}
+
+@keyframes duckFly--red-up {
+  0% {
+    background-position: -522px -310px;
+  }
+
+  33% {
+    background-position: -600px -312px;
+  }
+
+  66% {
+    background-position: -676px -314px;
+  }
+}
+
+@keyframes duckFall--black {
   0% {
     background-position: -340px -475px;
     transform: scaleX(1);
@@ -311,6 +395,30 @@
 
   50% {
     background-position: -340px -475px;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes duckFall--blue {
+  0% {
+    background-position: -80px -475px;
+    transform: scaleX(1);
+  }
+
+  50% {
+    background-position: -80px -475px;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes duckFall--red {
+  0% {
+    background-position: -595px -475px;
+    transform: scaleX(1);
+  }
+
+  50% {
+    background-position: -595px -475px;
     transform: scaleX(-1);
   }
 }
