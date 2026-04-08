@@ -65,12 +65,12 @@
 
 @keyframes dogWalk {
   0% {
-    background-position: 0 0;
+    background-position: 0 2px;
   }
 
   /* walk start */
   3% {
-    background-position: -120px 0;
+    background-position: -118px 0;
   }
 
   6% {
@@ -78,15 +78,15 @@
   }
 
   9% {
-    background-position: -360px 0;
+    background-position: -362px 2px;
   }
 
   12% {
-    background-position: 0 0;
+    background-position: 0 2px;
   }
 
   15% {
-    background-position: -120px 0;
+    background-position: -118px 0;
   }
 
   18% {
@@ -94,15 +94,15 @@
   }
 
   21% {
-    background-position: -360px 0;
+    background-position: -362px 2px;
   }
 
   24% {
-    background-position: 0 0;
+    background-position: 0 2px;
   }
 
   27% {
-    background-position: -120px 0;
+    background-position: -118px 0;
   }
 
   30% {
@@ -110,15 +110,15 @@
   }
 
   33% {
-    background-position: -360px 0;
+    background-position: -362px 2px;
   }
 
   36% {
-    background-position: 0 0;
+    background-position: 0 2px;
   }
 
   39% {
-    background-position: -120px 0;
+    background-position: -118px 0;
   }
 
   42% {
@@ -126,15 +126,15 @@
   }
 
   45% {
-    background-position: -360px 0;
+    background-position: -362px 2px;
   }
 
   48% {
-    background-position: 0 0;
+    background-position: 0 2px;
   }
 
   51% {
-    background-position: -120px 0;
+    background-position: -118px 0;
   }
 
   54% {
@@ -142,15 +142,15 @@
   }
 
   57% {
-    background-position: -360px 0;
+    background-position: -362px 2px;
   }
 
   60% {
-    background-position: 0 0;
+    background-position: 0 2px;
   }
 
   63% {
-    background-position: -120px 0;
+    background-position: -118px 0;
   }
 
   66% {
@@ -158,7 +158,7 @@
   }
 
   69% {
-    background-position: -360px 0;
+    background-position: -362px 2px;
   }
 
   /* Walk */
@@ -168,7 +168,7 @@
 
   /* Snif */
   75% {
-    background-position: -360px 0;
+    background-position: -362px 2px;
   }
 
   78% {
@@ -176,7 +176,7 @@
   }
 
   81% {
-    background-position: -360px 0;
+    background-position: -362px 2px;
   }
 
   90% {
@@ -197,7 +197,8 @@
     background-position: 1000px 1000px;
   }
 
-  /* Hide */}
+  /* Hide */
+}
 
 @keyframes dogShowHide {
   0% {
@@ -586,4 +587,3 @@ body {
     display: none;
   }
 }
-
